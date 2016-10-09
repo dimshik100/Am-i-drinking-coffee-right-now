@@ -160,9 +160,22 @@ var wep = [
 ];
 
 
+function normalizeProbability(str) {
+	var strArr = str.split('.');
+	var number = strArr[0];
+	var fraction = '';
 
+	if (strArr.length == 2) {
+		fraction = strArr[1].slice(0, 2);
+	} else {
+		fraction = '00';
+	}
+
+	return number + '.' + fraction;
+}
 
 function padLeft(str) {
+	str = str.toString();
 	var pad = "00"
 	return pad.substring(0, pad.length - str.length) + str;
 
@@ -189,6 +202,10 @@ function timeUpdated(timeString) {
 	var WEP = getWEP(probability);
 
 	console.log(probability, WEP);
+
+	$('.probability').html(normalizeProbability(probability));
+	$('.wep').html(WEP);
+
 }
 
 
