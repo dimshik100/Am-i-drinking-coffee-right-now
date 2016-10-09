@@ -1,8 +1,26 @@
 .input-group {
 	width: 110px;
-	margin: 0 auto;
+	margin: 0 auto 20px;
 }
 
 .svg-cup {
 	width: 100%;
+}
+
+.about {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.big-fan:hover {
+	position: relative;
+}
+
+.big-fan:hover:after {
+	content: url(../img/big%20fan.jpg);
+	display: block;
+	position: absolute;
+	left: 10px;
+	bottom: -15px;
+	box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.3);
 }

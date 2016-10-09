@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Objects" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="512.285px" height="465.297px" viewBox="0 0 512.285 465.297" enable-background="new 0 0 512.285 465.297"
+	 xml:space="preserve">
+<g id="XMLID_59_">
+	<circle id="dark_x5F_circle" fill="#433832" cx="256.143" cy="201.797" r="201.797"/>
+	<circle id="light_x5F_circle" fill="#C4996C" cx="256.143" cy="201.797" r="170.454"/>
+	<g id="XMLID_5_">
+		<polygon id="XMLID_8_" fill="#603912" points="0,465.297 90.084,465.297 90.084,384.865 0,384.865 23.057,423.741 		"/>
+		<polygon id="XMLID_6_" fill="#322A27" points="42.361,417.575 90.084,465.297 90.084,382.184 		"/>
+	</g>
+	<g id="XMLID_9_">
+		<polygon id="XMLID_11_" fill="#603912" points="512.285,465.297 422.201,465.297 422.201,384.865 512.285,384.865
+			489.229,423.741 		"/>
+		<polygon id="XMLID_10_" fill="#322A27" points="469.924,417.575 422.201,465.297 422.201,382.184 		"/>
+	</g>
+	<g id="cup">
+		<path id="XMLID_3_" fill="none" stroke="#E6E7E9" stroke-width="19" stroke-miterlimit="10" d="M191.4,197.583
+			c0,23.755,34.81,73.004,11.056,73.004c-23.755,0-109.638-8.487-109.638-60.445c0-23.755,19.257-43.012,43.012-43.012
+			C159.584,167.131,191.4,173.829,191.4,197.583z"/>
+		<path id="XMLID_1_" fill="#F2F2F2" d="M282.637,315.779h-52.988c-45.41,0-82.223-36.813-82.223-82.224v-98.081h217.434v98.081
+			C364.859,278.967,328.047,315.779,282.637,315.779z"/>
+		<path id="XMLID_2_" fill="#E6E7E9" d="M290.208,328.353h-68.131c-4.561,0-8.258-3.697-8.258-8.258l0,0
+			c0-4.561,3.697-8.258,8.258-8.258h68.131c4.561,0,8.258,3.697,8.258,8.258l0,0C298.466,324.656,294.769,328.353,290.208,328.353z"
+			/>
+	</g>
+	<rect id="robbon" x="42.361" y="326.954" fill="#8C603D" width="427.366" height="90.621"/>
+	<linearGradient id="steam_1_" gradientUnits="userSpaceOnUse" x1="256.1426" y1="35.1362" x2="256.1426" y2="124.6407">
+		<stop  offset="0" style="stop-color:#E6E7E9"/>
+		<stop  offset="1" style="stop-color:#C4996C"/>
+	</linearGradient>
+	<path id="steam" fill="url(#steam_1_)" d="M253.133,16.813c0,0,1.037,20.593-11.814,37.202
+		c-16.339,21.115-22.372,45.498-8.044,62.842c0,0-1.641-24.131,23.496-41.727c0,0-21.233,41.224,2.646,58.317
+		c0,0,3.521-11.353,16.338-25.891c16.842-19.104,12.951-38.459,1.006-54.295C263.247,35.345,253.133,16.813,253.133,16.813z"/>
+</g>
+</svg>
