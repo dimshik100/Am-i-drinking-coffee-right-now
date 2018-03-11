@@ -198,16 +198,37 @@ function getWEP(probability) {
 
 function timeUpdated(timeString) {
 	var hours = parseInt(timeString.split(":")[0]);
-	var probability = getProbability(hours).probability;
+	var probability = getProbability(hours);
 	var WEP = getWEP(probability);
 
 	console.log(probability, WEP);
 
-	$('.probability').html(normalizeProbability(probability));
+	$('.probability').html(normalizeProbability(probability.toString()));
 	$('.wep').html(WEP);
 
 }
 
+var totalCups;
 
-// first init
-timeUpdated(currentTime);
+
+
+
+$( document ).ready(function() {
+    $.getJSON("ajax/hashedTimes_2018-03-11T20:35:10.759Z.json", function (data) {
+
+		// calculate total number of cups
+		totalCups = data.reduce((a, b) => a + b, 0);
+	
+		$('.total').html(totalCups);
+	
+		probability = [];
+		for (let i = 0; i < data.length; i++) {
+			probability.push(data[i] / totalCups * 100);
+		}
+		// first init
+		timeUpdated(currentTime);
+	});
+});
+
+
+
