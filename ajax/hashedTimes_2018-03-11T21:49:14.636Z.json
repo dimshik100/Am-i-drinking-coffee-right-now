@@ -1,0 +1,127 @@
+{
+	"totalCups": 693,
+	"firstDate": "2015-10-11 14:43:30.762",
+	"lastDate": "2018-03-11 09:39:24.396",
+	"probabilityArr": [
+		{
+			"hour": 0,
+			"cups": 1,
+			"probability": 0.1443001443001443
+		},
+		{
+			"hour": 1,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 2,
+			"cups": 1,
+			"probability": 0.1443001443001443
+		},
+		{
+			"hour": 3,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 4,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 5,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 6,
+			"cups": 1,
+			"probability": 0.1443001443001443
+		},
+		{
+			"hour": 7,
+			"cups": 32,
+			"probability": 4.617604617604617
+		},
+		{
+			"hour": 8,
+			"cups": 93,
+			"probability": 13.41991341991342
+		},
+		{
+			"hour": 9,
+			"cups": 92,
+			"probability": 13.275613275613276
+		},
+		{
+			"hour": 10,
+			"cups": 107,
+			"probability": 15.44011544011544
+		},
+		{
+			"hour": 11,
+			"cups": 47,
+			"probability": 6.782106782106783
+		},
+		{
+			"hour": 12,
+			"cups": 25,
+			"probability": 3.6075036075036073
+		},
+		{
+			"hour": 13,
+			"cups": 43,
+			"probability": 6.204906204906205
+		},
+		{
+			"hour": 14,
+			"cups": 34,
+			"probability": 4.9062049062049065
+		},
+		{
+			"hour": 15,
+			"cups": 34,
+			"probability": 4.9062049062049065
+		},
+		{
+			"hour": 16,
+			"cups": 60,
+			"probability": 8.658008658008658
+		},
+		{
+			"hour": 17,
+			"cups": 42,
+			"probability": 6.0606060606060606
+		},
+		{
+			"hour": 18,
+			"cups": 18,
+			"probability": 2.5974025974025974
+		},
+		{
+			"hour": 19,
+			"cups": 15,
+			"probability": 2.1645021645021645
+		},
+		{
+			"hour": 20,
+			"cups": 23,
+			"probability": 3.318903318903319
+		},
+		{
+			"hour": 21,
+			"cups": 12,
+			"probability": 1.7316017316017316
+		},
+		{
+			"hour": 22,
+			"cups": 10,
+			"probability": 1.443001443001443
+		},
+		{
+			"hour": 23,
+			"cups": 3,
+			"probability": 0.4329004329004329
+		}
+	]
+}
