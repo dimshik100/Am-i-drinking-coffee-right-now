@@ -1,0 +1,133 @@
+{
+	"totalCups": 959,
+	"firstRecordedCoffeeCup": "2015-10-11 14:43:30.762",
+	"latestRecordedCoffeeCup": "2018-10-29 07:45:32.409",
+	"shortestTimeBetweenTwoCupsInMs": 2086129,
+	"longestTimeBetweenTwoCupsInMs": 4916243855,
+	"maximalNumberOfCupsInOneDay": {
+		"maximalNumberOfCups": 3,
+		"latestMostFrequentDay": "10-22-2018"
+	},
+	"probabilityArr": [
+		{
+			"hour": 0,
+			"cups": 1,
+			"probability": 0.10427528675703858
+		},
+		{
+			"hour": 1,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 2,
+			"cups": 1,
+			"probability": 0.10427528675703858
+		},
+		{
+			"hour": 3,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 4,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 5,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 6,
+			"cups": 2,
+			"probability": 0.20855057351407716
+		},
+		{
+			"hour": 7,
+			"cups": 52,
+			"probability": 5.422314911366007
+		},
+		{
+			"hour": 8,
+			"cups": 155,
+			"probability": 16.16266944734098
+		},
+		{
+			"hour": 9,
+			"cups": 148,
+			"probability": 15.43274244004171
+		},
+		{
+			"hour": 10,
+			"cups": 132,
+			"probability": 13.764337851929092
+		},
+		{
+			"hour": 11,
+			"cups": 58,
+			"probability": 6.047966631908238
+		},
+		{
+			"hour": 12,
+			"cups": 32,
+			"probability": 3.3368091762252345
+		},
+		{
+			"hour": 13,
+			"cups": 50,
+			"probability": 5.213764337851929
+		},
+		{
+			"hour": 14,
+			"cups": 38,
+			"probability": 3.962460896767466
+		},
+		{
+			"hour": 15,
+			"cups": 42,
+			"probability": 4.37956204379562
+		},
+		{
+			"hour": 16,
+			"cups": 67,
+			"probability": 6.986444212721585
+		},
+		{
+			"hour": 17,
+			"cups": 61,
+			"probability": 6.360792492179354
+		},
+		{
+			"hour": 18,
+			"cups": 30,
+			"probability": 3.1282586027111576
+		},
+		{
+			"hour": 19,
+			"cups": 19,
+			"probability": 1.981230448383733
+		},
+		{
+			"hour": 20,
+			"cups": 29,
+			"probability": 3.023983315954119
+		},
+		{
+			"hour": 21,
+			"cups": 21,
+			"probability": 2.18978102189781
+		},
+		{
+			"hour": 22,
+			"cups": 15,
+			"probability": 1.5641293013555788
+		},
+		{
+			"hour": 23,
+			"cups": 6,
+			"probability": 0.6256517205422315
+		}
+	]
+}
