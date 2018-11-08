@@ -10,27 +10,20 @@
 
 	<title>Is DiMsHiK Drinking coffee right now ?</title>
 
-	<!-- Bootstrap Core CSS -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
-
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-	 crossorigin="anonymous">
-
+	<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.css" rel="stylesheet">
 
 	<!-- Custom CSS -->
 	<link href="css/coffee.css" rel="stylesheet">
-
-	<link href="clockpicker/bootstrap-clockpicker.min.css" rel="stylesheet">
 </head>
-
 <body>
-
 	<div class="container">
-
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<div class="intro-message">
-					<h3>Is <a target="_blank" href="http://www.dimshik.com?ref=coffee">DiMsHiK</a> <span class="my-name">(Dima Vishnevetsky)</span> <br> drinking coffee right now ?</h3>
+					<h3>Is <a target="_blank" href="http://www.dimshik.com?ref=coffee">DiMsHiK</a> <span class="my-name">(Dima
+							Vishnevetsky)</span> <br> drinking coffee right now ?</h3>
 					<hr class="intro-divider">
 				</div>
 
@@ -45,8 +38,9 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-
-				<svg class="svg-cup" version="1.1" id="Objects" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512.285px" height="465.297px" viewBox="0 0 512.285 465.297" enable-background="new 0 0 512.285 465.297" xml:space="preserve">
+				<svg class="svg-cup" version="1.1" id="Objects" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+				 x="0px" y="0px" width="512.285px" height="465.297px" viewBox="0 0 512.285 465.297" enable-background="new 0 0 512.285 465.297"
+				 xml:space="preserve">
 					<g id="XMLID_59_">
 						<circle id="dark_x5F_circle" fill="#433832" cx="256.143" cy="201.797" r="201.797" />
 						<circle id="light_x5F_circle" fill="#C4996C" cx="256.143" cy="201.797" r="170.454" />
@@ -72,6 +66,7 @@
 			c0-4.561,3.697-8.258,8.258-8.258h68.131c4.561,0,8.258,3.697,8.258,8.258l0,0C298.466,324.656,294.769,328.353,290.208,328.353z" />
 						</g>
 
+						<!-- This is used to get a "relative" position functionality inside SVG -->
 						<svg style="overflow: visible" x="50%" y="45%">
 							<text fill="#8C603D">
 								<tspan x="15%" font-size="50" font-weight="bold" text-anchor="end" alignment-baseline="central" class="probability">text</tspan>
@@ -101,20 +96,22 @@
 			</div>
 		</div>
 
-
 		<div class="row about">
 			<div class="col-lg-12 text-center">
 				<h3>About</h3>
 				<p>This is a fun "One day" project i did to present the coffee intake data i'm collecting about myself.</p>
-				<p>The data is based on <kbd class="total"></kbd> cups of coffee i drank over a period of a few years, from <span class="from-date"></span> to <span class="to-date"></span>.</p>
-				<p><span class="big-fan text-info">I'm a big fan</span> of DATA so i wear <a target="_blank" href="http://www.samsung.com/global/galaxy/gear-s2/">Samsung gear s2 (classic)</a> and log coffee cups i drink.</p>
+				<p>The data is based on <kbd class="total"></kbd> cups of coffee i drank over a period of a few years, from <span
+					 class="from-date"></span> to <span class="to-date"></span>.</p>
+				<p><span class="big-fan text-info">I'm a big fan</span> of DATA so i wear <a target="_blank" href="http://www.samsung.com/global/galaxy/gear-s2/">Samsung
+						gear s2 (classic)</a> and log coffee cups i drink.</p>
 			</div>
 		</div>
 
 		<div class="row" id="stats">
 			<div class="col-12 text-center">
 				<h3>Stats</h3>
-			</div>
+      </div>
+      
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
 				<div class="card" id="TotalCups">
 					<div class="card-title">Total cups</div>
@@ -125,7 +122,8 @@
 					<hr />
 					<div class="card-hint"> <i class="fas fa-mountain"></i><span class="card-hint-data"></span></div>
 				</div>
-			</div>
+      </div>
+      
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
 				<div class="card" id="FirstRecordedCoffeeCup">
 					<div class="card-title">First Recorded Coffee Cup</div>
@@ -135,7 +133,8 @@
 					<div class="card-hint"> <i class="fas fa-question-circle"></i><span class="card-hint-data"> I Wander how many have
 							I drank before</span></div>
 				</div>
-			</div>
+      </div>
+      
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
 				<div class="card" id="LatestRecordedCoffeeCup">
 					<div class="card-title">Latest Recorded Coffee Cup</div>
@@ -144,8 +143,8 @@
 					<hr />
 					<div class="card-hint"> <i class="fas fa-info-circle"></i><span class="card-hint-data"> Syncing...</span> </div>
 				</div>
-			</div>
-
+      </div>
+      
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
 				<div class="card" id="ShortestTimeBetweenTwoCups">
 					<div class="card-title">Shortest Time Between Two Cups</div>
@@ -155,8 +154,8 @@
 					<div class="card-hint"> <i class="fas fa-battery-full"></i> <span class="card-hint-data">Battery was fully charged</span>
 					</div>
 				</div>
-			</div>
-
+      </div>
+      
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
 				<div class="card" id="LongestTimeBetweenTwoCups">
 					<div class="card-title">Longest Time Between Two Cups</div>
@@ -165,7 +164,8 @@
 					<hr />
 					<div class="card-hint"> <i class="fas fa-asterisk"></i><span class="card-hint-data"></span></div>
 				</div>
-			</div>
+      </div>
+      
 			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
 				<div class="card" id="MaximalNumberOfCupsInOneDay">
 					<div class="card-title">Maximal Number Of Cups In One Day</div>
@@ -176,7 +176,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 	<!-- Footer -->
@@ -190,20 +189,12 @@
 		</div>
 	</footer>
 
-	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
-
-	<script src="clockpicker/bootstrap-clockpicker.min.js"></script>
-
-	<!-- Moment.js -->
-	<script src="js/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="clockpicker//bootstrap-clockpicker.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
 	<!-- coffee.js -->
 	<script src="js/coffee.js"></script>
-
 </body>
 
 </html>
