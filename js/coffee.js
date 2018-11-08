@@ -1,37 +1,19 @@
-var currentdate = new Date();
-
-var currentTime = padLeft(currentdate.getHours()) + ":" + padLeft(currentdate.getMinutes());
-
-$('.clockpicker input').attr('placeholder', currentTime);
-
-
-// http://weareoutman.github.io/clockpicker/
-$('.clockpicker').clockpicker({
-  align: 'left',
-  donetext: 'Done',
-  'default': 'now',
-  vibrate: true,
-  afterDone: function (e) {
-    timeUpdated($('.clockpicker input').val());
-  }
-});
+const currentTime = moment().format("HH:mm");
 
 /*
 probability
 The array is arranged according to hours in a 24 hour cycle.
 	probability[18] -> 18:00
 */
-var probability;
+let probability;
 
-var maxProbability;
-
+let maxProbability;
 
 /* WEP - Words of estimative probability
 	https://en.wikipedia.org/wiki/Words_of_estimative_probability
 	I twisted the definitions a little bit :)
 */
-
-var wep = [
+const wep = [
   {
     max: 100,
     min: 93,
@@ -64,41 +46,32 @@ var wep = [
   }
 ];
 
-
 function normalizeProbability(probability) {
-
-  var normalizedProbability = probability / maxProbability * 100;
+  let normalizedProbability = (probability / maxProbability) * 100;
 
   // fix 100% to look more real, because nothing is certain in life.
   if (normalizedProbability === 100) {
     normalizedProbability = 99.42;
   }
-  console.log(`normalizedProbability (${normalizedProbability}) = real probability (${probability})/ max Probability (${maxProbability}) * 100`);
+  console.log(
+    `normalizedProbability (${normalizedProbability}) = real probability (${probability})/ max Probability (${maxProbability}) * 100`
+  );
 
   return normalizedProbability;
 }
 
-
 function prettyProbability(str) {
-
-  var strArr = str.split('.');
-  var number = strArr[0];
-  var fraction = '';
+  const strArr = str.split(".");
+  const number = strArr[0];
+  let fraction = "";
 
   if (strArr.length == 2) {
     fraction = strArr[1].slice(0, 2);
   } else {
-    fraction = '00';
+    fraction = "00";
   }
 
-  return number + '.' + fraction;
-}
-
-function padLeft(str) {
-  str = str.toString();
-  var pad = "00"
-  return pad.substring(0, pad.length - str.length) + str;
-
+  return number + "." + fraction;
 }
 
 // returns the probability
@@ -108,9 +81,7 @@ function getProbability(hours) {
 
 // returns string
 function getWEP(probability) {
-
-  for (var i = 0; i < wep.length; i++) {
-    var curWEP = wep[i];
+  for (curWEP of wep) {
     if (probability >= curWEP.min && probability < curWEP.max) {
       return curWEP.text;
     }
@@ -118,57 +89,94 @@ function getWEP(probability) {
 }
 
 function timeUpdated(timeString) {
-  var hours = parseInt(timeString.split(":")[0]);
+  const hours = parseInt(timeString.split(":")[0]);
 
-  var normalizedProbability = normalizeProbability(getProbability(hours));
-  var WEP = getWEP(normalizedProbability);
+  const normalizedProbability = normalizeProbability(getProbability(hours));
+  const WEP = getWEP(normalizedProbability);
 
   console.log(normalizedProbability, WEP);
 
-  $('.probability').html(prettyProbability(normalizedProbability.toString()));
-  $('.wep').html(WEP);
-
+  $(".probability").html(prettyProbability(normalizedProbability.toString()));
+  $(".wep").html(WEP);
 }
 
-$(document).ready(function () {
-  $.getJSON("ajax/hashedTimes_2018-10-29T22:15:18.562Z.json", function (data) {
+$(".clockpicker input").attr("placeholder", currentTime);
 
-    $('.total').html(data.totalCups);
+$(document).ready(function() {
+  $.getJSON("ajax/hashedTimes_2018-10-29T22:15:18.562Z.json", function(data) {
+    const firstRecordedCoffeeCup = moment(data.firstRecordedCoffeeCup).format(
+      "LL"
+    );
+    const latestRecordedCoffeeCup = moment(data.latestRecordedCoffeeCup).format(
+      "LL"
+    );
 
-    const firstRecordedCoffeeCup = moment(data.firstRecordedCoffeeCup).format('LL');
-    const latestRecordedCoffeeCup = moment(data.latestRecordedCoffeeCup).format('LL');
+    const shortestTimeBetweenTwoCups = moment
+      .duration(data.shortestTimeBetweenTwoCupsInMs)
+      .humanize();
+    const longestTimeBetweenTwoCups = moment
+      .duration(data.longestTimeBetweenTwoCupsInMs)
+      .humanize();
 
-    const shortestTimeBetweenTwoCups = moment.duration(data.shortestTimeBetweenTwoCupsInMs).humanize();
-    const longestTimeBetweenTwoCups = moment.duration(data.longestTimeBetweenTwoCupsInMs).humanize();
+    const latestMostFrequentDay = moment(
+      data.maximalNumberOfCupsInOneDay.latestMostFrequentDay,
+      "MM-DD-YYYY"
+    ).format("LL");
 
-    const latestMostFrequentDay = moment(data.maximalNumberOfCupsInOneDay.latestMostFrequentDay, 'MM-DD-YYYY').format('LL');
+    $(".total").html(data.totalCups);
 
-    $('.from-date').html(firstRecordedCoffeeCup);
-    $('.to-date').html(latestRecordedCoffeeCup);
+    $(".from-date").html(firstRecordedCoffeeCup);
+    $(".to-date").html(latestRecordedCoffeeCup);
 
-    $('#TotalCups .card-data').text(data.totalCups);
-    $('#TotalCups .card-hint-data').text(`About ${data.totalCups*80/1000} grams of caffeine`);
+    $("#TotalCups .card-data").text(data.totalCups);
+    $("#TotalCups .card-hint-data").text(
+      `About ${(data.totalCups * 80) / 1000} grams of caffeine`
+    );
 
-    $('#FirstRecordedCoffeeCup .card-data').text(firstRecordedCoffeeCup);
-    $('#LatestRecordedCoffeeCup .card-data').text(latestRecordedCoffeeCup);
+    $("#FirstRecordedCoffeeCup .card-data").text(firstRecordedCoffeeCup);
+    $("#LatestRecordedCoffeeCup .card-data").text(latestRecordedCoffeeCup);
 
-    $('#ShortestTimeBetweenTwoCups .card-data').text(shortestTimeBetweenTwoCups);
-    $('#LongestTimeBetweenTwoCups .card-data').text(longestTimeBetweenTwoCups);
+    $("#ShortestTimeBetweenTwoCups .card-data").text(
+      shortestTimeBetweenTwoCups
+    );
+    $("#LongestTimeBetweenTwoCups .card-data").text(longestTimeBetweenTwoCups);
 
-    $('#LongestTimeBetweenTwoCups .card-hint-data').text(`${Math.round(moment.duration(data.longestTimeBetweenTwoCupsInMs).asDays())} Days`);
+    $("#LongestTimeBetweenTwoCups .card-hint-data").text(
+      `${Math.round(
+        moment.duration(data.longestTimeBetweenTwoCupsInMs).asDays()
+      )} Days`
+    );
 
-    $('#MaximalNumberOfCupsInOneDay .card-data').text(`${data.maximalNumberOfCupsInOneDay.maximalNumberOfCups} Cups`);
-    $('#MaximalNumberOfCupsInOneDay .card-hint-data').text(latestMostFrequentDay);
+    $("#MaximalNumberOfCupsInOneDay .card-data").text(
+      `${data.maximalNumberOfCupsInOneDay.maximalNumberOfCups} Cups`
+    );
+    $("#MaximalNumberOfCupsInOneDay .card-hint-data").text(
+      latestMostFrequentDay
+    );
 
+    // Update globals
     probability = data.probabilityArr;
 
-    maxProbability = Math.max.apply(Math, data.probabilityArr.map(function (o) { return o.probability; }));
-    console.log('maxProbability ', maxProbability);
+    maxProbability = Math.max.apply(
+      Math,
+      data.probabilityArr.map(function(o) {
+        return o.probability;
+      })
+    );
+
+    console.log("maxProbability ", maxProbability);
 
     // first init
     timeUpdated(currentTime);
+
+    $(".clockpicker").clockpicker({
+      align: "left",
+      donetext: "Done",
+      default: "now",
+      vibrate: true,
+      afterDone: function(e) {
+        timeUpdated($(".clockpicker input").val());
+      }
+    });
   });
 });
-
-
-
