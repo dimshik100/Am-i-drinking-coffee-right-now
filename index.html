@@ -11,7 +11,11 @@
 	<title>Is DiMsHiK Drinking coffee right now ?</title>
 
 	<!-- Bootstrap Core CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	 crossorigin="anonymous">
+
 
 	<!-- Custom CSS -->
 	<link href="css/coffee.css" rel="stylesheet">
@@ -26,21 +30,18 @@
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<div class="intro-message">
-					<!--					<h1>Coffee Intake</h1>-->
 					<h3>Is <a target="_blank" href="http://www.dimshik.com?ref=coffee">DiMsHiK</a> <span class="my-name">(Dima Vishnevetsky)</span> <br> drinking coffee right now ?</h3>
 					<hr class="intro-divider">
 				</div>
 
-
 				<div class="input-group clockpicker">
 					<input type="text" class="form-control" value="" placeholder="Now">
 					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-time"></span>
+						<i class="far fa-clock"></i>
 					</span>
 				</div>
 			</div>
 		</div>
-
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -103,15 +104,80 @@
 
 		<div class="row about">
 			<div class="col-lg-12 text-center">
-				<h4>About</h4>
+				<h3>About</h3>
 				<p>This is a fun "One day" project i did to present the coffee intake data i'm collecting about myself.</p>
 				<p>The data is based on <kbd class="total"></kbd> cups of coffee i drank over a period of a few years, from <span class="from-date"></span> to <span class="to-date"></span>.</p>
 				<p><span class="big-fan text-info">I'm a big fan</span> of DATA so i wear <a target="_blank" href="http://www.samsung.com/global/galaxy/gear-s2/">Samsung gear s2 (classic)</a> and log coffee cups i drink.</p>
 			</div>
 		</div>
 
-	</div>
+		<div class="row" id="stats">
+			<div class="col-12 text-center">
+				<h3>Stats</h3>
+			</div>
+			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
+				<div class="card" id="TotalCups">
+					<div class="card-title">Total cups</div>
+					<div class="card-icon">
+						<i class="fas fa-coffee"></i>
+					</div>
+					<div class="card-data"></div>
+					<hr />
+					<div class="card-hint"> <i class="fas fa-mountain"></i><span class="card-hint-data"></span></div>
+				</div>
+			</div>
+			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
+				<div class="card" id="FirstRecordedCoffeeCup">
+					<div class="card-title">First Recorded Coffee Cup</div>
+					<div class="card-icon"><i class="fas fa-plane-departure"></i></div>
+					<div class="card-data"></div>
+					<hr />
+					<div class="card-hint"> <i class="fas fa-question-circle"></i><span class="card-hint-data"> I Wander how many have
+							I drank before</span></div>
+				</div>
+			</div>
+			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
+				<div class="card" id="LatestRecordedCoffeeCup">
+					<div class="card-title">Latest Recorded Coffee Cup</div>
+					<div class="card-icon"><i class="fas fa-plane-arrival"></i></div>
+					<div class="card-data"></div>
+					<hr />
+					<div class="card-hint"> <i class="fas fa-info-circle"></i><span class="card-hint-data"> Syncing...</span> </div>
+				</div>
+			</div>
 
+			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
+				<div class="card" id="ShortestTimeBetweenTwoCups">
+					<div class="card-title">Shortest Time Between Two Cups</div>
+					<div class="card-icon"><i class="fas fa-stopwatch"></i></div>
+					<div class="card-data"></div>
+					<hr />
+					<div class="card-hint"> <i class="fas fa-battery-full"></i> <span class="card-hint-data">Battery was fully charged</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
+				<div class="card" id="LongestTimeBetweenTwoCups">
+					<div class="card-title">Longest Time Between Two Cups</div>
+					<div class="card-icon"><i class="far fa-calendar-alt"></i></div>
+					<div class="card-data"></div>
+					<hr />
+					<div class="card-hint"> <i class="fas fa-asterisk"></i><span class="card-hint-data"></span></div>
+				</div>
+			</div>
+			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
+				<div class="card" id="MaximalNumberOfCupsInOneDay">
+					<div class="card-title">Maximal Number Of Cups In One Day</div>
+					<div class="card-icon"><i class="far fa-smile"></i></div>
+					<div class="card-data"></div>
+					<hr />
+					<div class="card-hint"><i class="far fa-calendar-alt"></i> <span class="card-hint-data"></span></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
 
 	<!-- Footer -->
 	<footer>
@@ -132,7 +198,7 @@
 
 	<script src="clockpicker/bootstrap-clockpicker.min.js"></script>
 
-	 <!-- Moment.js -->
+	<!-- Moment.js -->
 	<script src="js/moment.min.js"></script>
 
 	<!-- coffee.js -->

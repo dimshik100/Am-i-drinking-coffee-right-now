@@ -9,7 +9,7 @@
 
 .about {
 	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-bottom: 50px;
 }
 
 .big-fan:hover {
@@ -27,4 +27,122 @@
 
 .my-name {
 	font-size: 18px;
+}
+
+/* Cards */
+
+#stats {
+	padding: 8px 0;
+}
+
+#stats h3 {
+	margin-bottom: 30px;
+}
+
+#stats .card {
+	margin: 0 -8px 32px -8px;
+	color: rgba(0, 0, 0, 0.87);
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#stats .card .card-title {
+	display: flex;
+	justify-content: flex-end;
+	padding: 16px;
+	font-weight: 300;
+	padding-left: 110px;
+	text-align: right;
+}
+
+#stats .card .card-data {
+	display: flex;
+	justify-content: flex-end;
+	padding: 16px 16px 0 0;
+	font-size: 1.5em;
+	font-weight: 300;
+}
+
+#stats .card hr {
+	width: 90%;
+}
+
+#stats .card .card-hint {
+	display: flex;
+	padding: 0 0 8px 8px;
+	font-size: 0.9em;
+	font-weight: 300;
+	align-items: center;
+}
+
+#stats .card .card-hint i {
+	font-size: 1.3em;
+	color: red;
+	margin-right: 8px;
+}
+
+#stats .card .card-icon {
+	display: flex;
+	position: absolute;
+	top: -20px;
+	left: 12px;
+	background: linear-gradient(60deg, #ffa726, #EF6C00);
+	color: white;
+	width: 90px;
+	height: 90px;
+	box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.15);
+	align-items: center;
+	justify-content: center;
+	border-radius: 25%;
+}
+
+#stats .card .card-icon i {
+	font-size: 3em;
+}
+
+#stats #FirstRecordedCoffeeCup .card-icon {
+	background: linear-gradient(60deg, #5E35B1, #039BE5);
+}
+
+#stats #FirstRecordedCoffeeCup .card-hint i {
+	color: #5E35B1;
+}
+
+#stats #LatestRecordedCoffeeCup .card-icon {
+	background: linear-gradient(60deg, #F50057, #FF8A80);
+}
+
+#stats #LatestRecordedCoffeeCup .card-hint i {
+	color: #007bff;
+}
+
+#stats #TotalCups .card-icon {
+	background: linear-gradient(60deg, #fb8c00, #FFCA29);
+}
+
+#stats #TotalCups .card-hint i {
+	color: #795548;
+}
+
+#stats #ShortestTimeBetweenTwoCups .card-icon {
+	background: linear-gradient(60deg, #43A047, #FFEB3B);
+}
+
+#stats #ShortestTimeBetweenTwoCups .card-hint i {
+	color: #28a745;
+}
+
+#stats #LongestTimeBetweenTwoCups .card-icon {
+	background: linear-gradient(60deg, #0288D1, #26C6DA);
+}
+
+#stats #LongestTimeBetweenTwoCups .card-hint i {
+	color: #dc3545;
+}
+
+#stats #MaximalNumberOfCupsInOneDay .card-icon {
+	background: linear-gradient(60deg, #CFD8DC, #546E7A);
+}
+
+#stats #MaximalNumberOfCupsInOneDay .card-hint i {
+	color: #17a2b8;
 }

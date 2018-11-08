@@ -134,8 +134,31 @@ $(document).ready(function () {
   $.getJSON("ajax/hashedTimes_2018-10-29T22:15:18.562Z.json", function (data) {
 
     $('.total').html(data.totalCups);
-    $('.from-date').html(moment(data.firstRecordedCoffeeCup).format('LL'));
-    $('.to-date').html(moment(data.latestRecordedCoffeeCup).format('LL'));
+
+    const firstRecordedCoffeeCup = moment(data.firstRecordedCoffeeCup).format('LL');
+    const latestRecordedCoffeeCup = moment(data.latestRecordedCoffeeCup).format('LL');
+
+    const shortestTimeBetweenTwoCups = moment.duration(data.shortestTimeBetweenTwoCupsInMs).humanize();
+    const longestTimeBetweenTwoCups = moment.duration(data.longestTimeBetweenTwoCupsInMs).humanize();
+
+    const latestMostFrequentDay = moment(data.maximalNumberOfCupsInOneDay.latestMostFrequentDay, 'MM-DD-YYYY').format('LL');
+
+    $('.from-date').html(firstRecordedCoffeeCup);
+    $('.to-date').html(latestRecordedCoffeeCup);
+
+    $('#TotalCups .card-data').text(data.totalCups);
+    $('#TotalCups .card-hint-data').text(`About ${data.totalCups*80/1000} grams of caffeine`);
+
+    $('#FirstRecordedCoffeeCup .card-data').text(firstRecordedCoffeeCup);
+    $('#LatestRecordedCoffeeCup .card-data').text(latestRecordedCoffeeCup);
+
+    $('#ShortestTimeBetweenTwoCups .card-data').text(shortestTimeBetweenTwoCups);
+    $('#LongestTimeBetweenTwoCups .card-data').text(longestTimeBetweenTwoCups);
+
+    $('#LongestTimeBetweenTwoCups .card-hint-data').text(`${Math.round(moment.duration(data.longestTimeBetweenTwoCupsInMs).asDays())} Days`);
+
+    $('#MaximalNumberOfCupsInOneDay .card-data').text(`${data.maximalNumberOfCupsInOneDay.maximalNumberOfCups} Cups`);
+    $('#MaximalNumberOfCupsInOneDay .card-hint-data').text(latestMostFrequentDay);
 
     probability = data.probabilityArr;
 
