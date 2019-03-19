@@ -103,7 +103,7 @@ function timeUpdated(timeString) {
 $(".clockpicker input").attr("placeholder", currentTime);
 
 $(document).ready(function() {
-  $.getJSON("ajax/hashedTimes_2018-10-29T22:15:18.562Z.json", function(data) {
+  $.getJSON("ajax/hashedTimes_2018-12-02T10:32:16Z.json", function(data) {
     const firstRecordedCoffeeCup = moment(data.firstRecordedCoffeeCup).format(
       "LL"
     );
