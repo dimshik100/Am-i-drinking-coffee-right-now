@@ -3,7 +3,7 @@
 
 This is a fun "One day" project i did to present the coffee intake data i'm collecting about myself.
 
-The data is based on **959** cups of coffee i drank over a period of a few years, from 2015-10-11 to 2018-10-29.
+The data is based on **1657** cups of coffee i drank over a period of a few years, from 2015-10-11 to 2020-04-24.
 
 I'm a big fan of DATA so i wear [Samsung gear s2 (classic)](http://www.samsung.com/global/galaxy/gear-s2/) and log coffee cups i drink.
 
