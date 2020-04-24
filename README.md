@@ -11,4 +11,4 @@ There is also a Node.js script on the [master](https://github.com/dimshik100/Am-
 
 Made with lots of ☕️
 
-Copyright © dimshik 2018. All Rights Reserved
+Copyright © [dimshik](https://twitter.com/dimshik100) 2020. All Rights Reserved
