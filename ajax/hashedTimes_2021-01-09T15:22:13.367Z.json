@@ -1,0 +1,142 @@
+{
+	"totalCups": 2007,
+	"firstRecordedCoffeeCup": "2015-10-11 14:43:30",
+	"latestRecordedCoffeeCup": "2021-01-09 17:11:37",
+	"shortestTimeBetweenTwoCupsInMs": 2086000,
+	"longestTimeBetweenTwoCupsInMs": 4916244000,
+	"maximalNumberOfCupsInOneDay": {
+		"maximalNumberOfCups": 3,
+		"latestMostFrequentDay": "02-29-2020"
+	},
+	"probabilityArr": [
+		{
+			"hour": 0,
+			"cups": 2,
+			"probability": 0.0996512207274539
+		},
+		{
+			"hour": 1,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 2,
+			"cups": 1,
+			"probability": 0.04982561036372695
+		},
+		{
+			"hour": 3,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 4,
+			"cups": 0,
+			"probability": 0
+		},
+		{
+			"hour": 5,
+			"cups": 2,
+			"probability": 0.0996512207274539
+		},
+		{
+			"hour": 6,
+			"cups": 5,
+			"probability": 0.2491280518186348
+		},
+		{
+			"hour": 7,
+			"cups": 104,
+			"probability": 5.181863477827604
+		},
+		{
+			"hour": 8,
+			"cups": 332,
+			"probability": 16.54210264075735
+		},
+		{
+			"hour": 9,
+			"cups": 378,
+			"probability": 18.83408071748879
+		},
+		{
+			"hour": 10,
+			"cups": 253,
+			"probability": 12.60587942202292
+		},
+		{
+			"hour": 11,
+			"cups": 121,
+			"probability": 6.028898854010962
+		},
+		{
+			"hour": 12,
+			"cups": 57,
+			"probability": 2.8400597907324365
+		},
+		{
+			"hour": 13,
+			"cups": 73,
+			"probability": 3.6372695565520674
+		},
+		{
+			"hour": 14,
+			"cups": 68,
+			"probability": 3.388141504733433
+		},
+		{
+			"hour": 15,
+			"cups": 94,
+			"probability": 4.683607374190333
+		},
+		{
+			"hour": 16,
+			"cups": 129,
+			"probability": 6.427503736920777
+		},
+		{
+			"hour": 17,
+			"cups": 138,
+			"probability": 6.87593423019432
+		},
+		{
+			"hour": 18,
+			"cups": 72,
+			"probability": 3.587443946188341
+		},
+		{
+			"hour": 19,
+			"cups": 61,
+			"probability": 3.039362232187344
+		},
+		{
+			"hour": 20,
+			"cups": 45,
+			"probability": 2.242152466367713
+		},
+		{
+			"hour": 21,
+			"cups": 41,
+			"probability": 2.042850024912805
+		},
+		{
+			"hour": 22,
+			"cups": 24,
+			"probability": 1.195814648729447
+		},
+		{
+			"hour": 23,
+			"cups": 7,
+			"probability": 0.3487792725460887
+		}
+	],
+	"dayOfWeekDistribution": {
+		"0": 300,
+		"1": 289,
+		"2": 295,
+		"3": 299,
+		"4": 283,
+		"5": 260,
+		"6": 281
+	}
+}
