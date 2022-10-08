@@ -102,64 +102,72 @@ function timeUpdated(timeString) {
 
 $(".clockpicker input").attr("placeholder", currentTime);
 
-$(document).ready(function() {
-  $.getJSON("ajax/hashedTimes_2021-01-09T15:22:13.367Z.json", function(data) {
-    const firstRecordedCoffeeCup = moment(data.firstRecordedCoffeeCup).format(
-      "LL"
-    );
-    const latestRecordedCoffeeCup = moment(data.latestRecordedCoffeeCup).format(
-      "LL"
-    );
+const spreadsheetId = "1Q4Ia6WG8heKThDScF-5MIAPVdTZBPbjNS8BH4tfWkVM";
+const spreadsheetTabName = "Dashboard_API";
+const probabilityTabName = "Probability_API";
 
-    const shortestTimeBetweenTwoCups = moment
-      .duration(data.shortestTimeBetweenTwoCupsInMs)
-      .humanize();
-    const longestTimeBetweenTwoCups = moment
-      .duration(data.longestTimeBetweenTwoCupsInMs)
-      .humanize();
+$(document).ready(function() {
+  $.getJSON(`https://opensheet.elk.sh/${spreadsheetId}/${spreadsheetTabName}`, function(response) {
+
+
+    const data = {
+      totalCups: response[0]["total cups"],
+      firstRecordedCoffeeCup: moment(response[0]["first recorded coffee cup date"], "DD-MM-YYYY hh:mm:ss"),
+      latestRecordedCoffeeCup: moment(response[0]["latest recorded coffee cup date"], "DD-MM-YYYY hh:mm:ss"),
+      maximalNumberOfCupsInOneDay: response[0]["maximal number of cups in one day"],
+      latestMostFrequentDay: response[0]["latest most frequent date"],
+      shortestTimeBetweenTwoCupsInSeconds: parseInt(response[0]["shortest time between two cups in seconds"]),
+      longestTimeBetweenTwoCupsInSeconds: parseInt(response[0]["longest time between two cups in seconds"]),
+    }
+
+    console.log("🚀 ~ file: coffee.js ~ line 110 ~ $.getJSON ~ data", data);
+
 
     const latestMostFrequentDay = moment(
-      data.maximalNumberOfCupsInOneDay.latestMostFrequentDay,
-      "MM-DD-YYYY"
+      data.latestMostFrequentDay,
+      "DD-MM-YYYY"
     ).format("LL");
 
     $(".total").html(data.totalCups);
 
-    $(".from-date").html(firstRecordedCoffeeCup);
-    $(".to-date").html(latestRecordedCoffeeCup);
+    $(".from-date").html(data.firstRecordedCoffeeCup.format("LL"));
+    $(".to-date").html(data.latestRecordedCoffeeCup.format("LL"));
+
+    $(".total-years").html(moment.duration(data.latestRecordedCoffeeCup.diff(data.firstRecordedCoffeeCup)).humanize());
 
     $("#TotalCups .card-data").text(data.totalCups);
     $("#TotalCups .card-hint-data").text(
       `About ${(data.totalCups * 80) / 1000} grams of caffeine`
     );
 
-    $("#FirstRecordedCoffeeCup .card-data").text(firstRecordedCoffeeCup);
-    $("#LatestRecordedCoffeeCup .card-data").text(latestRecordedCoffeeCup);
+    $("#FirstRecordedCoffeeCup .card-data").text(data.firstRecordedCoffeeCup.format("LL"));
+    $("#LatestRecordedCoffeeCup .card-data").text(data.latestRecordedCoffeeCup.format("LL"));
 
-    $("#ShortestTimeBetweenTwoCups .card-data").text(
-      shortestTimeBetweenTwoCups
-    );
-    $("#LongestTimeBetweenTwoCups .card-data").text(longestTimeBetweenTwoCups);
+
+    $("#ShortestTimeBetweenTwoCups .card-data").text(moment.duration(data.shortestTimeBetweenTwoCupsInSeconds, "seconds").humanize());
+    $("#LongestTimeBetweenTwoCups .card-data").text(moment.duration(data.longestTimeBetweenTwoCupsInSeconds, "seconds").humanize());
 
     $("#LongestTimeBetweenTwoCups .card-hint-data").text(
       `${Math.round(
-        moment.duration(data.longestTimeBetweenTwoCupsInMs).asDays()
+        moment.duration(data.longestTimeBetweenTwoCupsInSeconds, "seconds").asDays()
       )} Days`
     );
 
     $("#MaximalNumberOfCupsInOneDay .card-data").text(
-      `${data.maximalNumberOfCupsInOneDay.maximalNumberOfCups} Cups`
+      `${data.maximalNumberOfCupsInOneDay} Cups`
     );
     $("#MaximalNumberOfCupsInOneDay .card-hint-data").text(
       latestMostFrequentDay
     );
+  });
 
-    // Update globals
-    probability = data.probabilityArr;
+  $.getJSON(`https://opensheet.elk.sh/${spreadsheetId}/${probabilityTabName}`, function(response) {
+    // // Update globals
+    probability = response;
 
     maxProbability = Math.max.apply(
       Math,
-      data.probabilityArr.map(function(o) {
+      response.map(function(o) {
         return o.probability;
       })
     );
