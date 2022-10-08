@@ -109,7 +109,6 @@ const probabilityTabName = "Probability_API";
 $(document).ready(function() {
   $.getJSON(`https://opensheet.elk.sh/${spreadsheetId}/${spreadsheetTabName}`, function(response) {
 
-
     const data = {
       totalCups: response[0]["total cups"],
       firstRecordedCoffeeCup: moment(response[0]["first recorded coffee cup date"], "DD-MM-YYYY hh:mm:ss"),
@@ -119,8 +118,6 @@ $(document).ready(function() {
       shortestTimeBetweenTwoCupsInSeconds: parseInt(response[0]["shortest time between two cups in seconds"]),
       longestTimeBetweenTwoCupsInSeconds: parseInt(response[0]["longest time between two cups in seconds"]),
     }
-
-    console.log("🚀 ~ file: coffee.js ~ line 110 ~ $.getJSON ~ data", data);
 
 
     const latestMostFrequentDay = moment(
