@@ -50,12 +50,15 @@
               d="M191.4,197.583 c0,23.755,34.81,73.004,11.056,73.004c-23.755,0-109.638-8.487-109.638-60.445c0-23.755,19.257-43.012,43.012-43.012 C159.584,167.131,191.4,173.829,191.4,197.583z" />
             <path class="cup-body" fill="#F2F2F2"
               d="M282.637,315.779h-52.988c-45.41,0-82.223-36.813-82.223-82.224v-98.081h217.434v98.081 C364.859,278.967,328.047,315.779,282.637,315.779z" />
-              
+
             <g clip-path="url(#cupClip)">
               <g id="liquid-stack">
-                <path class="wave-top" fill="#C87F42" d="M0,20 Q55,0 110,20 T220,20 T330,20 T440,20 T550,20 V400 H0 Z" />
-                <path class="wave-mid" fill="#915222" d="M0,45 Q55,65 110,45 T220,45 T330,45 T440,45 T550,45 V400 H0 Z" />
-                <path class="wave-bottom" fill="#592D0E" d="M0,85 Q55,75 110,85 T220,85 T330,85 T440,85 T550,85 V400 H0 Z" />
+                <path class="wave-top" fill="#C87F42"
+                  d="M0,20 Q55,0 110,20 T220,20 T330,20 T440,20 T550,20 V400 H0 Z" />
+                <path class="wave-mid" fill="#915222"
+                  d="M0,45 Q55,65 110,45 T220,45 T330,45 T440,45 T550,45 V400 H0 Z" />
+                <path class="wave-bottom" fill="#592D0E"
+                  d="M0,85 Q55,75 110,85 T220,85 T330,85 T440,85 T550,85 V400 H0 Z" />
               </g>
             </g>
             <path class="cup-body-bottom" fill="#E6E7E9"
@@ -130,7 +133,7 @@
         <div class="card-content">
           <h3>Time Since Last Cup</h3>
           <div class="card-data" id="TimeSinceLastData">...</div>
-          <div class="card-hint">Withdrawal status</div>
+          <div class="card-hint">Time until the next cup?</div>
         </div>
       </div>
 
@@ -140,7 +143,8 @@
           <h3>The Golden Hour</h3>
           <div class="card-data" id="GoldenHourData">...</div>
           <div class="card-hint">Prime time for coffee</div>
-          <svg id="ProbabilityHistogram" viewBox="0 0 240 80" style="width: 100%; height: 80px; margin-top: 15px; overflow: visible;">
+          <svg id="ProbabilityHistogram" viewBox="0 0 240 80"
+            style="width: 100%; height: 80px; margin-top: 15px; overflow: visible;">
             <!-- Bars injected by JS -->
           </svg>
         </div>
@@ -198,18 +202,18 @@
       <div class="stat-card">
         <div class="card-icon">🗓️</div>
         <div class="card-content">
-          <h3>Longest Gap</h3>
+          <h3>Longest Gap Between two cups</h3>
           <div class="card-data" id="LongestGapData">...</div>
-          <div class="card-hint">Between two cups</div>
+          <div class="card-hint">Wow, how did I survive?</div>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="card-icon">⏱️</div>
         <div class="card-content">
-          <h3>Shortest Gap</h3>
+          <h3>Shortest Gap Between two cups</h3>
           <div class="card-data" id="ShortestGapData">...</div>
-          <div class="card-hint">Between two cups</div>
+          <div class="card-hint">Why so close?</div>
         </div>
       </div>
 

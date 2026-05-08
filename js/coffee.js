@@ -117,7 +117,7 @@ function updateDashboardUI() {
   document.querySelector(".total-years").textContent = `${yearsTotal} years`;
 
   document.getElementById("TotalCupsData").textContent = dashboardData.totalCups;
-  document.getElementById("CaffeineHint").textContent = `~${Math.round(dashboardData.totalCups * 0.08)}g of caffeine`;
+  document.getElementById("CaffeineHint").innerHTML = `~${Math.round(dashboardData.totalCups * 0.08)}g of caffeine<br>(based on 80mg per cup)`;
 
   document.getElementById("FirstCupData").textContent = firstDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) + " " + firstDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   document.getElementById("LatestCupData").textContent = latestDateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) + " " + latestDateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -166,10 +166,15 @@ function updateDashboardUI() {
 
       const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
+      const totalWidth = 240;
+      const slotWidth = totalWidth / probabilitiesData.length;
+      const rectWidth = slotWidth * 0.9;
+      const rectX = index * slotWidth + (slotWidth - rectWidth) / 2;
+
       const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-      rect.setAttribute("x", index * 10);
+      rect.setAttribute("x", rectX);
       rect.setAttribute("y", 80 - barHeight);
-      rect.setAttribute("width", 8);
+      rect.setAttribute("width", rectWidth);
       rect.setAttribute("height", Math.max(1, barHeight));
       rect.setAttribute("fill", "#E8882E");
       rect.setAttribute("rx", 2);
@@ -180,12 +185,12 @@ function updateDashboardUI() {
       const nextHourStr = ((parseInt(hourStr) + 1) % 24).toString().padStart(2, "0");
       text.textContent = `${hourStr}-${nextHourStr}`;
 
-      const textX = index * 10 + 4;
+      const textX = rectX + rectWidth / 2;
       const textY = 80 - barHeight - 2;
       text.setAttribute("x", textX);
       text.setAttribute("y", textY);
       text.setAttribute("fill", "#a69182");
-      text.setAttribute("font-size", "4px");
+      text.setAttribute("font-size", "7.5px");
       text.setAttribute("font-weight", "500");
       text.setAttribute("text-anchor", "start");
       text.setAttribute("alignment-baseline", "middle");
@@ -201,7 +206,7 @@ function updateDashboardUI() {
   const liters = (dashboardData.totalCups * 0.25).toFixed(1);
   const bathtubs = (liters / 80).toFixed(1); // avg bathtub is 80L
   document.getElementById("LiquidVolumeData").textContent = `${liters} Liters`;
-  document.getElementById("BathtubHint").textContent = `~${bathtubs} Bathtubs 🛁`;
+  document.getElementById("BathtubHint").innerHTML = `~${bathtubs} Bathtubs 🛁<br>(based on 250ml cappuccino)`;
 }
 
 // Background DB Fetching & Crunching
