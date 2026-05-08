@@ -2,201 +2,333 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="Dima Vishnevetsky">
-
-	<title>Is DiMsHiK Drinking coffee right now ?</title>
-
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.css" rel="stylesheet">
-
-	<!-- Custom CSS -->
-	<link href="css/coffee.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Is DiMsHiK Drinking coffee right now?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="css/coffee.css" rel="stylesheet">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
 </head>
+
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<div class="intro-message">
-					<h3>Is <a target="_blank" href="http://www.dimshik.com?ref=coffee">DiMsHiK</a> <span class="my-name">(Dima
-							Vishnevetsky)</span> <br> drinking coffee right now ?</h3>
-					<hr class="intro-divider">
-				</div>
+  <div class="app-container">
 
-				<div class="input-group clockpicker">
-					<input type="text" class="form-control" value="" placeholder="Now">
-					<span class="input-group-addon">
-						<i class="far fa-clock"></i>
-					</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-12">
-				<svg class="svg-cup" version="1.1" id="Objects" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-				 x="0px" y="0px" width="512.285px" height="465.297px" viewBox="0 0 512.285 465.297" enable-background="new 0 0 512.285 465.297"
-				 xml:space="preserve">
-					<g id="XMLID_59_">
-						<circle id="dark_x5F_circle" fill="#433832" cx="256.143" cy="201.797" r="201.797" />
-						<circle id="light_x5F_circle" fill="#C4996C" cx="256.143" cy="201.797" r="170.454" />
-						<g id="XMLID_5_">
-							<polygon id="XMLID_8_" fill="#603912" points="0,465.297 90.084,465.297 90.084,384.865 0,384.865 23.057,423.741 		" />
-							<polygon id="XMLID_6_" fill="#322A27" points="42.361,417.575 90.084,465.297 90.084,382.184 		" />
-						</g>
-						<g id="XMLID_9_">
-							<polygon id="XMLID_11_" fill="#603912" points="512.285,465.297 422.201,465.297 422.201,384.865 512.285,384.865
-			489.229,423.741 		" />
-							<polygon id="XMLID_10_" fill="#322A27" points="469.924,417.575 422.201,465.297 422.201,382.184 		" />
-						</g>
-
-
-
-						<g id="cup">
-							<path id="XMLID_3_" fill="none" stroke="#E6E7E9" stroke-width="19" stroke-miterlimit="10" d="M191.4,197.583
-			c0,23.755,34.81,73.004,11.056,73.004c-23.755,0-109.638-8.487-109.638-60.445c0-23.755,19.257-43.012,43.012-43.012
-			C159.584,167.131,191.4,173.829,191.4,197.583z" />
-							<path id="XMLID_1_" fill="#F2F2F2" d="M282.637,315.779h-52.988c-45.41,0-82.223-36.813-82.223-82.224v-98.081h217.434v98.081
-			C364.859,278.967,328.047,315.779,282.637,315.779z" />
-							<path id="XMLID_2_" fill="#E6E7E9" d="M290.208,328.353h-68.131c-4.561,0-8.258-3.697-8.258-8.258l0,0
-			c0-4.561,3.697-8.258,8.258-8.258h68.131c4.561,0,8.258,3.697,8.258,8.258l0,0C298.466,324.656,294.769,328.353,290.208,328.353z" />
-						</g>
-
-						<!-- This is used to get a "relative" position functionality inside SVG -->
-						<svg style="overflow: visible" x="50%" y="45%">
-							<text fill="#8C603D">
-								<tspan x="15%" font-size="50" font-weight="bold" text-anchor="end" alignment-baseline="central" class="probability">text</tspan>
-								<tspan font-size="30" font-weight="bold" text-anchor="middle" dy="15">%</tspan>
-								<tspan x="0%" font-size="22" text-anchor="middle" dy="40">Probability</tspan>
-							</text>
-						</svg>
-
-						<rect id="robbon" x="42.361" y="326.954" fill="#8C603D" width="427.366" height="90.621" />
-
-						<svg style="overflow: visible" x="50%" y="83%">
-							<text font-size="45" font-weight="bold" text-anchor="middle" alignment-baseline="central" fill="#FFFFFF">
-								<tspan class="wep">text</tspan>
-							</text>
-						</svg>
-
-						<linearGradient id="steam_1_" gradientUnits="userSpaceOnUse" x1="256.1426" y1="35.1362" x2="256.1426" y2="124.6407">
-							<stop offset="0" style="stop-color:#E6E7E9" />
-							<stop offset="1" style="stop-color:#C4996C" />
-						</linearGradient>
-						<path id="steam" fill="url(#steam_1_)" d="M253.133,16.813c0,0,1.037,20.593-11.814,37.202
-		c-16.339,21.115-22.372,45.498-8.044,62.842c0,0-1.641-24.131,23.496-41.727c0,0-21.233,41.224,2.646,58.317
-		c0,0,3.521-11.353,16.338-25.891c16.842-19.104,12.951-38.459,1.006-54.295C263.247,35.345,253.133,16.813,253.133,16.813z" />
-					</g>
-				</svg>
-
-			</div>
-		</div>
-
-		<div class="row about">
-			<div class="col-lg-12 text-center">
-				<h3>About</h3>
-				<p>This is a fun "One day" project i did to present the coffee intake data i'm collecting about myself.</p>
-				<p>The data is based on <kbd class="total"></kbd> cups of coffee i drank over a period of about <span class="total-years"></span>, from <span
-					 class="from-date"></span> to <span class="to-date"></span> (OMG 😲, <span class="total-years"></span> already).</p>
-				<p><span class="big-fan text-info">I'm a big fan</span> of DATA so i wear <a target="_blank" href="http://www.samsung.com/global/galaxy/gear-s2/">Samsung
-						gear s2 (classic)</a> and <s>log coffee cups i drink.</s> no longer log the data using my watch, as the coffee logging functionality was removed from samsung health a couple of versions ago.
-						<br>
-						Now I log them using a shortcut to google spreadsheet on my mobile. (It's a 3 tap process to log a cup of coffee)</p>
-			</div>
-		</div>
-
-		<div class="row" id="stats">
-			<div class="col-12 text-center">
-				<h3>Stats</h3>
+    <header class="header">
+      <h1>Is <a href="http://www.dimshik.com?ref=coffee" target="_blank">DiMsHiK</a> drinking coffee right now?</h1>
+      <div class="time-picker-container" style="cursor: pointer;"
+        onclick="document.getElementById('timePicker').showPicker();">
+        <label for="timePicker" style="cursor: pointer;">Check time:</label>
+        <input type="time" id="timePicker" class="time-picker">
       </div>
-      
-			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
-				<div class="card" id="TotalCups">
-					<div class="card-title">Total cups</div>
-					<div class="card-icon">
-						<i class="fas fa-coffee"></i>
-					</div>
-					<div class="card-data"></div>
-					<hr />
-					<div class="card-hint"> <i class="fas fa-mountain"></i><span class="card-hint-data"></span></div>
-				</div>
-      </div>
-      
-			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
-				<div class="card" id="FirstRecordedCoffeeCup">
-					<div class="card-title">First Recorded Coffee Cup</div>
-					<div class="card-icon"><i class="fas fa-plane-departure"></i></div>
-					<div class="card-data"></div>
-					<hr />
-					<div class="card-hint"> <i class="fas fa-question-circle"></i><span class="card-hint-data"> I Wonder how many have
-							I drank before</span></div>
-				</div>
-      </div>
-      
-			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
-				<div class="card" id="LatestRecordedCoffeeCup">
-					<div class="card-title">Latest Recorded Coffee Cup</div>
-					<div class="card-icon"><i class="fas fa-plane-arrival"></i></div>
-					<div class="card-data"></div>
-					<hr />
-					<div class="card-hint"> <i class="fas fa-info-circle"></i><span class="card-hint-data"> Syncing...</span> </div>
-				</div>
-      </div>
-      
-			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
-				<div class="card" id="ShortestTimeBetweenTwoCups">
-					<div class="card-title">Shortest Time Between Two Cups</div>
-					<div class="card-icon"><i class="fas fa-stopwatch"></i></div>
-					<div class="card-data"></div>
-					<hr />
-					<div class="card-hint"> <i class="fas fa-battery-full"></i> <span class="card-hint-data">Battery was fully charged</span>
-					</div>
-				</div>
-      </div>
-      
-			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
-				<div class="card" id="LongestTimeBetweenTwoCups">
-					<div class="card-title">Longest Time Between Two Cups</div>
-					<div class="card-icon"><i class="far fa-calendar-alt"></i></div>
-					<div class="card-data"></div>
-					<hr />
-					<div class="card-hint"> <i class="fas fa-asterisk"></i><span class="card-hint-data"></span></div>
-				</div>
-      </div>
-      
-			<div class="col-12 col-sm-6 col-md-6 col-lg-4">
-				<div class="card" id="MaximalNumberOfCupsInOneDay">
-					<div class="card-title">Maximal Number Of Cups In One Day</div>
-					<div class="card-icon"><i class="far fa-smile"></i></div>
-					<div class="card-data"></div>
-					<hr />
-					<div class="card-hint"><i class="far fa-calendar-alt"></i> <span class="card-hint-data"></span> &nbsp; (Latest date)</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    </header>
 
-	<!-- Footer -->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<p class="copyright text-muted small">Made with lots of ☕️<br> Copyright &copy; dimshik 2022. All Rights Reserved</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+    <main class="main-display">
+      <div class="cup-container">
+        <svg class="svg-cup" viewBox="0 -30 512.285 495.297" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="cupClip">
+              <path
+                d="M282.637,315.779h-52.988c-45.41,0-82.223-36.813-82.223-82.224v-98.081h217.434v98.081 C364.859,278.967,328.047,315.779,282.637,315.779z" />
+            </clipPath>
+          </defs>
+          <g>
+            <!-- Background circle -->
+            <circle class="cup-opening-bg" fill="#2A1B14" cx="256.143" cy="201.797" r="201.797" />
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="clockpicker//bootstrap-clockpicker.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+            <polygon class="cup-base-left" fill="#422511"
+              points="0,465.297 90.084,465.297 90.084,384.865 0,384.865 23.057,423.741" />
+            <polygon class="cup-base-left-shadow" fill="#1A110D"
+              points="42.361,417.575 90.084,465.297 90.084,382.184" />
+            <polygon class="cup-base-right" fill="#422511"
+              points="512.285,465.297 422.201,465.297 422.201,384.865 512.285,384.865 489.229,423.741" />
+            <polygon class="cup-base-right-shadow" fill="#1A110D"
+              points="469.924,417.575 422.201,465.297 422.201,382.184" />
 
-	<!-- coffee.js -->
-	<script src="js/coffee.js"></script>
+            <path class="cup-handle" fill="none" stroke="#E6E7E9" stroke-width="19" stroke-miterlimit="10"
+              d="M191.4,197.583 c0,23.755,34.81,73.004,11.056,73.004c-23.755,0-109.638-8.487-109.638-60.445c0-23.755,19.257-43.012,43.012-43.012 C159.584,167.131,191.4,173.829,191.4,197.583z" />
+            <path class="cup-body" fill="#F2F2F2"
+              d="M282.637,315.779h-52.988c-45.41,0-82.223-36.813-82.223-82.224v-98.081h217.434v98.081 C364.859,278.967,328.047,315.779,282.637,315.779z" />
+
+            <g clip-path="url(#cupClip)">
+              <g id="liquid-stack">
+                <path class="wave-top" fill="#C87F42"
+                  d="M0,20 Q55,0 110,20 T220,20 T330,20 T440,20 T550,20 V400 H0 Z" />
+                <path class="wave-mid" fill="#915222"
+                  d="M0,45 Q55,65 110,45 T220,45 T330,45 T440,45 T550,45 V400 H0 Z" />
+                <path class="wave-bottom" fill="#592D0E"
+                  d="M0,85 Q55,75 110,85 T220,85 T330,85 T440,85 T550,85 V400 H0 Z" />
+              </g>
+            </g>
+            <path class="cup-body-bottom" fill="#E6E7E9"
+              d="M290.208,328.353h-68.131c-4.561,0-8.258-3.697-8.258-8.258l0,0 c0-4.561,3.697-8.258,8.258-8.258h68.131c4.561,0,8.258,3.697,8.258,8.258l0,0C298.466,324.656,294.769,328.353,290.208,328.353z" />
+
+            <svg style="overflow: visible" x="50%" y="201.797">
+              <text fill="#ffffff">
+                <tspan x="15%" font-size="50" font-weight="700" text-anchor="end" alignment-baseline="central"
+                  class="probability"
+                  style="stroke: #5A351D; stroke-width: 5px; stroke-linejoin: round; paint-order: stroke fill;">00
+                </tspan>
+                <tspan font-size="30" font-weight="700" text-anchor="middle" dy="15"
+                  style="stroke: #5A351D; stroke-width: 4px; paint-order: stroke fill;">%</tspan>
+                <tspan x="0%" font-size="20" fill="#fdb878" font-weight="500" text-anchor="middle" dy="45">Probability
+                </tspan>
+              </text>
+            </svg>
+
+            <rect class="probability-ribbon" x="42.361" y="326.954" fill="#E8882E" width="427.366" height="90.621"
+              rx="10" />
+            <svg style="overflow: visible" x="50%" y="382">
+              <text font-size="35" font-weight="700" text-anchor="middle" alignment-baseline="central" fill="#140c08">
+                <tspan class="wep">Loading...</tspan>
+              </text>
+            </svg>
+
+            <linearGradient id="steamGradient" gradientUnits="userSpaceOnUse" x1="256.1426" y1="35.1362" x2="256.1426"
+              y2="124.6407">
+              <stop offset="0" style="stop-color:rgba(230, 231, 233, 0)" />
+              <stop offset="1" style="stop-color:rgba(196, 153, 108, 0.8)" />
+            </linearGradient>
+            <path class="steam" fill="url(#steamGradient)"
+              d="M253.133,16.813c0,0,1.037,20.593-11.814,37.202 c-16.339,21.115-22.372,45.498-8.044,62.842c0,0-1.641-24.131,23.496-41.727c0,0-21.233,41.224,2.646,58.317 c0,0,3.521-11.353,16.338-25.891c16.842-19.104,12.951-38.459,1.006-54.295C263.247,35.345,253.133,16.813,253.133,16.813z" />
+          </g>
+        </svg>
+      </div>
+    </main>
+
+    <section class="about-section">
+      <p class="data-summary">
+        Based on <strong class="total text-highlight">...</strong> cups drank over <strong
+          class="total-years text-highlight">...</strong>
+      </p>
+      <div class="theme-row">
+        <span class="theme-row-label">Change coffee type</span>
+        <select id="ThemeSelect" class="time-picker theme-select">
+          <option value="espresso">Espresso (Dark)</option>
+          <option value="cappuccino">Cappuccino (Light)</option>
+          <option value="matcha">Matcha (Green)</option>
+        </select>
+      </div>
+      <p class="theme-note">I didn't actually track the types of coffee I drank over the years. Changing the UI theme is
+        cool though, so here we are.</p>
+
+      <details class="about-details">
+        <summary>Learn more about this project</summary>
+        <div class="about-content">
+          <p>Hi, I'm Dima Vishnevetsky. I'm a huge data nerd, and my blood type is basically Cappuccino at this point.
+            Welcome to my personal coffee dashboard! ☕🚀</p>
+          <p>This project started back when I used a Samsung Gear S2 watch to log every single cup of coffee I drank.
+            When Samsung Health removed that feature, I couldn't just let the data stop flowing.</p>
+          <p>Nowadays, I track my caffeine intake using a custom 3-tap mobile shortcut that feeds directly into a Google
+            Spreadsheet. What you're seeing here is that data parsed and visualized entirely live.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="stats-grid" id="stats-grid">
+      <div class="stat-card">
+        <div class="card-icon">☕</div>
+        <div class="card-content">
+          <h3>Total Cups</h3>
+          <div class="card-data" id="TotalCupsData">...</div>
+          <div class="card-hint" id="CaffeineHint">...</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="card-icon">📈</div>
+        <div class="card-content">
+          <h3>Avg Cups / Day</h3>
+          <div class="card-data" id="AvgCupsData">...</div>
+          <div class="card-hint">Daily average</div>
+        </div>
+      </div>
+
+      <div class="stat-card col-span-2">
+        <div class="card-icon">🥇</div>
+        <div class="card-content" style="width: 100%;">
+          <h3>Most Caffeinated Day</h3>
+          <div class="card-data" id="MostCaffeinatedDayData">...</div>
+          <div class="card-hint" id="MostCaffeinatedDayHint">...</div>
+          <svg id="WeekdayHistogram" viewBox="0 0 240 80"
+            style="width: 100%; height: 80px; margin-top: 15px; overflow: visible;">
+            <!-- Bars injected by JS -->
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="card-icon">⏳</div>
+        <div class="card-content">
+          <h3>Time Since Last Cup</h3>
+          <div class="card-data" id="TimeSinceLastData">...</div>
+          <div class="card-hint">Time until the next cup?</div>
+        </div>
+      </div>
+
+      <div class="stat-card col-span-2">
+        <div class="card-icon">🌅</div>
+        <div class="card-content" style="width: 100%;">
+          <h3>The Golden Hour</h3>
+          <div class="card-data" id="GoldenHourData">...</div>
+          <div class="card-hint">Prime time for coffee</div>
+          <svg id="ProbabilityHistogram" viewBox="0 0 240 80"
+            style="width: 100%; height: 80px; margin-top: 15px; overflow: visible;">
+            <!-- Bars injected by JS -->
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="card-icon">🤯</div>
+        <div class="card-content">
+          <h3>Max Cups in One Day</h3>
+          <div class="card-data" id="MaxCupsData">...</div>
+          <div class="card-hint" id="MaxCupsHint">...</div>
+        </div>
+      </div>
+
+      <!-- New: Weekend vs Weekday -->
+      <div class="stat-card">
+        <div class="card-icon">📅</div>
+        <div class="card-content">
+          <h3>Workdays vs Weekends</h3>
+          <div class="card-data" id="WeekendSplitData">...</div>
+          <div class="card-hint">The daily grind vs Days off</div>
+        </div>
+      </div>
+
+      <!-- New: Jitter Streak -->
+      <div class="stat-card">
+        <div class="card-icon">🔥</div>
+        <div class="card-content">
+          <h3>Longest Streak</h3>
+          <div class="card-data" id="JitterStreakData">...</div>
+          <div class="card-hint">Consecutive days of coffee</div>
+        </div>
+      </div>
+
+      <!-- New: Seasonal Shifts -->
+      <div class="stat-card">
+        <div class="card-icon">🍂</div>
+        <div class="card-content">
+          <h3>Peak Season</h3>
+          <div class="card-data" id="PeakSeasonData">...</div>
+          <div class="card-hint">When you drink the most</div>
+        </div>
+      </div>
+
+      <!-- New: Liquid Volume -->
+      <div class="stat-card">
+        <div class="card-icon">🛁</div>
+        <div class="card-content">
+          <h3>Liquid Volume</h3>
+          <div class="card-data" id="LiquidVolumeData">...</div>
+          <div class="card-hint" id="BathtubHint">...</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="card-icon">🗓️</div>
+        <div class="card-content">
+          <h3>Longest Gap Between two cups</h3>
+          <div class="card-data" id="LongestGapData">...</div>
+          <div class="card-hint">Wow, how did I survive?</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="card-icon">⏱️</div>
+        <div class="card-content">
+          <h3>Shortest Gap Between two cups</h3>
+          <div class="card-data" id="ShortestGapData">...</div>
+          <div class="card-hint">Why so close?</div>
+        </div>
+      </div>
+
+
+
+      <div class="stat-card col-span-2">
+        <div class="card-icon">📊</div>
+        <div class="card-content" style="width: 100%;">
+          <h3>Yearly Consumption</h3>
+          <div class="yearly-breakup-data" id="YearlyBreakupData" style="margin-top: 15px;">
+            <div class="card-hint loading-shimmer">Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card col-span-2">
+        <div class="card-icon">📜</div>
+        <div class="card-content">
+          <h3>Timeline</h3>
+          <div class="timeline-data">
+            <div><span>First Cup:</span> <strong id="FirstCupData">...</strong></div>
+            <div><span>Latest Cup:</span> <strong id="LatestCupData">...</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="heatmap-section">
+      <div class="heatmap-header">
+        <h3>Coffee Drinking Heatmap</h3>
+        <select id="HeatmapYearSelect" class="time-picker"
+          style="font-size: 1rem; padding: 0.2rem 0.5rem; background: var(--card-bg); color: var(--text-main); border: 1px solid var(--accent); border-radius: 6px; cursor: pointer;">
+          <option value="2025">2025</option>
+          <!-- Will be populated dynamically -->
+        </select>
+      </div>
+      <div class="heatmap-container" id="HeatmapContainer">
+        <!-- JS injects squares -->
+        <div class="card-hint loading-shimmer" style="height: 100px; width: 100%;"></div>
+      </div>
+      <div class="heatmap-legend">
+        <span>Less</span>
+        <div class="heatmap-square level-0"></div>
+        <div class="heatmap-square level-1"></div>
+        <div class="heatmap-square level-2"></div>
+        <div class="heatmap-square level-3"></div>
+        <div class="heatmap-square level-4"></div>
+        <span>More</span>
+      </div>
+    </section>
+
+    <!-- Bottom Padding to avoid nav overlap -->
+    <div style="height: 100px;"></div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item active">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="#stats-grid" class="nav-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+      </svg>
+      <span>Stats</span>
+    </a>
+    <a href="http://www.dimshik.com" target="_blank" class="nav-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      <span>DiMsHiK</span>
+    </a>
+  </nav>
+
+  <script src="js/coffee.js"></script>
 </body>
 
 </html>

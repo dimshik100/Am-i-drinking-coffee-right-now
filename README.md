@@ -1,18 +1,19 @@
-# Is DiMsHiK Drinking coffee right now ?
+# Is DiMsHiK Drinking coffee right now?
 
+This is a fun project to track and visualize my coffee intake data over the years!
 
-This is a fun "One day" project i did to present the coffee intake data i'm collecting about myself.
+The data is currently based on **4,000** cups of coffee I've drank starting back in 2015.
 
-The data is based on **2816** cups of coffee i drank over a period of a few years, from 11/10/2015 to 08/10/2022. (OMG 😲, 7 years already)
+I'm a massive fan of data. I originally used a Samsung watch to track my consumption, but I now log every cup using a quick 3-tap shortcut on my phone directly into a Google Spreadsheet. The data is instantly processed and fed live to this dashboard.
 
-I'm a big fan of DATA so i wear [Samsung gear s2 (classic)](http://www.samsung.com/global/galaxy/gear-s2/) and ~~log coffee cups i drink.~~ no longer log the data using my watch, as the coffee logging functionality was removed from samsung health a couple of versions ago.
+## 2026 Redesign ✨
 
-I log them using a shortcut to google spreadsheet on my mobile. (It's a 3 tap process to log a cup of coffee)
-
-The google spreadsheet is public and I pull live data from it to this project using the cool open source [opensheet](https://github.com/benborgers/opensheet) by [Ben Borgers](https://github.com/benborgers)
-
-~~There is also a Node.js script on the [master](https://github.com/dimshik100/Am-i-drinking-coffee-right-now/tree/master) branch to convert the exported `CSV` from Samsung health to a simple `JSON` file for this client app.~~
+This project recently went through a massive modernization overhaul:
+- **Zero Dependencies**: Outdated libraries (like jQuery, Bootstrap, and Moment.js) were completely stripped out. The entire dashboard now runs on lightning-fast, lightweight **Vanilla JavaScript**.
+- **Dark Mode UI**: The interface was redesigned with a gorgeous, mobile-first dark theme utilizing glassmorphism and modern CSS styling.
+- **Dynamic Animations**: Includes buttery-smooth SVG animations, live ticking clocks, and dynamic chart elements built entirely with native CSS.
+- **Advanced Analytics**: Calculates rich stats entirely client-side without locking up the UI, including peak coffee seasons, jitter levels, longest streaks, and a 24-hour distribution curve.
 
 Made with lots of ☕️
 
-Copyright © [dimshik](https://twitter.com/dimshik100) 2022. All Rights Reserved
+Copyright © [dimshik](https://twitter.com/dimshik100). All Rights Reserved
