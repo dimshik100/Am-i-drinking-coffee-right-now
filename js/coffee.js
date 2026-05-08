@@ -259,7 +259,7 @@ function processFullDB() {
     }
   }
   document.getElementById("PeakSeasonData").textContent = peakSeason;
-  document.getElementById("PeakSeasonData").nextElementSibling.textContent = `W:${seasonCount.Winter} Sp:${seasonCount.Spring} Su:${seasonCount.Summer} F:${seasonCount.Fall}`;
+  document.getElementById("PeakSeasonData").nextElementSibling.innerHTML = `Winter: ${seasonCount.Winter} &nbsp; Spring: ${seasonCount.Spring}<br>Summer: ${seasonCount.Summer} &nbsp; Fall: ${seasonCount.Fall}`;
 
   // Streak Calculation
   const sortedDates = Array.from(datesSet).map(d => {
