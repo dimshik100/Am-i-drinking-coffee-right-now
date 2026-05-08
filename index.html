@@ -15,6 +15,7 @@
 
 <body>
   <div class="app-container">
+
     <header class="header">
       <h1>Is <a href="http://www.dimshik.com?ref=coffee" target="_blank">DiMsHiK</a> drinking coffee right now?</h1>
       <div class="time-picker-container" style="cursor: pointer;"
@@ -95,7 +96,6 @@
           </g>
         </svg>
       </div>
-      <div id="ContextualMessage" class="contextual-message">Brewing data...</div>
     </main>
 
     <section class="about-section">
@@ -103,15 +103,26 @@
         Based on <strong class="total text-highlight">...</strong> cups drank over <strong
           class="total-years text-highlight">...</strong>
       </p>
+      <div class="theme-row">
+        <span class="theme-row-label">Change coffee type</span>
+        <select id="ThemeSelect" class="time-picker theme-select">
+          <option value="espresso">Espresso (Dark)</option>
+          <option value="cappuccino">Cappuccino (Light)</option>
+          <option value="matcha">Matcha (Green)</option>
+        </select>
+      </div>
+      <p class="theme-note">I didn't actually track the types of coffee I drank over the years. Changing the UI theme is
+        cool though, so here we are.</p>
+
       <details class="about-details">
         <summary>Learn more about this project</summary>
         <div class="about-content">
-          <p>I'm a big fan of DATA so I wore a Samsung gear s2 (classic) and logged coffee cups I drink. I no longer log
-            the data using my watch, as the coffee logging functionality was removed from samsung health a couple of
-            versions ago.</p>
-          <p>Now I log them using a shortcut to a Google spreadsheet on my mobile. (It's a 3 tap process to log a cup of
-            coffee!). The data is parsed live.</p>
-          <p>Some say my blood type is basically Espresso at this point. Welcome to the addiction dashboard! ☕🚀</p>
+          <p>Hi, I'm Dima Vishnevetsky. I'm a huge data nerd, and my blood type is basically Cappuccino at this point.
+            Welcome to my personal coffee dashboard! ☕🚀</p>
+          <p>This project started back when I used a Samsung Gear S2 watch to log every single cup of coffee I drank.
+            When Samsung Health removed that feature, I couldn't just let the data stop flowing.</p>
+          <p>Nowadays, I track my caffeine intake using a custom 3-tap mobile shortcut that feeds directly into a Google
+            Spreadsheet. What you're seeing here is that data parsed and visualized entirely live.</p>
         </div>
       </details>
     </section>
@@ -126,7 +137,23 @@
         </div>
       </div>
 
-      <!-- Removed Jitter Level Card -->
+      <div class="stat-card">
+        <div class="card-icon">📈</div>
+        <div class="card-content">
+          <h3>Avg Cups / Day</h3>
+          <div class="card-data" id="AvgCupsData">...</div>
+          <div class="card-hint">Daily average</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="card-icon">🥇</div>
+        <div class="card-content">
+          <h3>Most Caffeinated Day</h3>
+          <div class="card-data" id="MostCaffeinatedDayData">...</div>
+          <div class="card-hint" id="MostCaffeinatedDayHint">...</div>
+        </div>
+      </div>
 
       <div class="stat-card">
         <div class="card-icon">⏳</div>
@@ -163,7 +190,7 @@
       <div class="stat-card">
         <div class="card-icon">📅</div>
         <div class="card-content">
-          <h3>Work vs Weekend</h3>
+          <h3>Workdays vs Weekends</h3>
           <div class="card-data" id="WeekendSplitData">...</div>
           <div class="card-hint">The daily grind vs Days off</div>
         </div>
@@ -220,6 +247,16 @@
 
 
       <div class="stat-card col-span-2">
+        <div class="card-icon">📊</div>
+        <div class="card-content" style="width: 100%;">
+          <h3>Yearly Consumption</h3>
+          <div class="yearly-breakup-data" id="YearlyBreakupData" style="margin-top: 15px;">
+            <div class="card-hint loading-shimmer">Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card col-span-2">
         <div class="card-icon">📜</div>
         <div class="card-content">
           <h3>Timeline</h3>
@@ -228,6 +265,30 @@
             <div><span>Latest Cup:</span> <strong id="LatestCupData">...</strong></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="heatmap-section">
+      <div class="heatmap-header">
+        <h3>Coffee Activity Heatmap</h3>
+        <select id="HeatmapYearSelect" class="time-picker"
+          style="font-size: 1rem; padding: 0.2rem 0.5rem; background: var(--card-bg); color: var(--text-main); border: 1px solid var(--accent); border-radius: 6px; cursor: pointer;">
+          <option value="2025">2025</option>
+          <!-- Will be populated dynamically -->
+        </select>
+      </div>
+      <div class="heatmap-container" id="HeatmapContainer">
+        <!-- JS injects squares -->
+        <div class="card-hint loading-shimmer" style="height: 100px; width: 100%;"></div>
+      </div>
+      <div class="heatmap-legend">
+        <span>Less</span>
+        <div class="heatmap-square level-0"></div>
+        <div class="heatmap-square level-1"></div>
+        <div class="heatmap-square level-2"></div>
+        <div class="heatmap-square level-3"></div>
+        <div class="heatmap-square level-4"></div>
+        <span>More</span>
       </div>
     </section>
 

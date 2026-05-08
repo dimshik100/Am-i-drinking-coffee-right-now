@@ -1,12 +1,18 @@
+const savedTheme = localStorage.getItem('coffee-theme') || 'espresso';
+document.documentElement.setAttribute('data-theme', savedTheme);
+
 const spreadsheetId = "1Q4Ia6WG8heKThDScF-5MIAPVdTZBPbjNS8BH4tfWkVM";
 const dashboardTabName = "Dashboard_API";
 const probabilityTabName = "Probability_API";
 const coffeeDbTabName = "Coffee%20DB";
+const weekdaysDistributionTabName = "Weekdays%20distribution";
 
 let probabilitiesData = [];
 let maxProbability = 0;
 let dashboardData = {};
+let weekdaysDistributionData = [];
 let coffeeDbData = [];
+let coffeeHeatmapData = {};
 let latestDateObj = new Date();
 let liveTimerInterval;
 
@@ -21,15 +27,30 @@ const wep = [
 
 const pad = (num) => num.toString().padStart(2, '0');
 
+function animateValue(obj, start, end, duration) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    obj.textContent = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
 function normalizeProbability(prob) {
   let normalized = (prob / maxProbability) * 100;
-  if (normalized === 100) normalized = 99.42;
+  // Cap at 99.42 to avoid displaying a flat 100% (float equality is unreliable, use threshold)
+  if (normalized >= 99.99) normalized = 99.42;
   return normalized;
 }
 
 function getWEP(prob) {
+  // Use > on min (not >=) so boundary values (e.g. 93) match exactly one bracket
   for (let w of wep) {
-    if (prob >= w.min && prob <= w.max) return w.text;
+    if (prob > w.min && prob <= w.max) return w.text;
   }
   return "Unknown";
 }
@@ -61,19 +82,6 @@ function parseDateDDMMYYYYHHMMSS(dateStr) {
   );
 }
 
-function getContextualMessage(hours, prob) {
-  if (hours >= 22 || hours < 4) {
-    return prob > 10 ? "Late night grind or bad decisions? 🦉" : "You should be sleeping. 🛏️";
-  }
-  if (hours >= 7 && hours <= 10) {
-    return prob > 50 ? "Prime coffee time! ☕" : "Starting the day slow? 🌅";
-  }
-  if (hours >= 14 && hours <= 16) {
-    return prob > 30 ? "Afternoon slump avoided. ⚡" : "Powering through the afternoon. 💪";
-  }
-  return "Just another beautiful day. ✨";
-}
-
 function updateProbabilityDisplay(timeStr) {
   const hours = parseInt(timeStr.split(":")[0], 10);
   if (!probabilitiesData[hours]) return;
@@ -84,9 +92,6 @@ function updateProbabilityDisplay(timeStr) {
 
   document.querySelector(".probability").textContent = normalized.toFixed(2);
   document.querySelector(".wep").textContent = wepText;
-
-  // Update Contextual Message
-  document.getElementById("ContextualMessage").textContent = getContextualMessage(hours, normalized);
 
   // Animate Liquid Level (via group transform)
   const liquidStack = document.getElementById("liquid-stack");
@@ -116,7 +121,8 @@ function updateDashboardUI() {
   const yearsTotal = ((latestDateObj - firstDate) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1);
   document.querySelector(".total-years").textContent = `${yearsTotal} years`;
 
-  document.getElementById("TotalCupsData").textContent = dashboardData.totalCups;
+  const totalCupsEl = document.getElementById("TotalCupsData");
+  animateValue(totalCupsEl, 0, parseInt(dashboardData.totalCups, 10), 1500);
   document.getElementById("CaffeineHint").innerHTML = `~${Math.round(dashboardData.totalCups * 0.08)}g of caffeine<br>(based on 80mg per cup)`;
 
   document.getElementById("FirstCupData").textContent = firstDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) + " " + firstDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -131,7 +137,19 @@ function updateDashboardUI() {
 
   document.getElementById("MaxCupsData").textContent = `${dashboardData.maximalNumberOfCupsInOneDay} Cups`;
   const maxCupsDate = parseDateDDMMYYYYHHMMSS(dashboardData.latestMostFrequentDay);
-  document.getElementById("MaxCupsHint").textContent = `On ${maxCupsDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}`;
+  document.getElementById("MaxCupsHint").textContent = `Most recently on ${maxCupsDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}`;
+
+  let maxWDayCups = 0;
+  let maxWDay = "";
+  weekdaysDistributionData.forEach(item => {
+    const cups = parseInt(item["1"], 10);
+    if (cups > maxWDayCups) {
+      maxWDayCups = cups;
+      maxWDay = item.Weekday;
+    }
+  });
+  document.getElementById("MostCaffeinatedDayData").textContent = maxWDay;
+  document.getElementById("MostCaffeinatedDayHint").textContent = `${maxWDayCups} total cups recorded`;
 
   let goldenHourStr = "0:00:00";
   let maxP = 0;
@@ -157,12 +175,14 @@ function updateDashboardUI() {
 
   // Build Histogram
   const histogramSvg = document.getElementById("ProbabilityHistogram");
+  const peakProbability = Math.max(...probabilitiesData.map(o => parseFloat(o.probability)));
   if (histogramSvg && probabilitiesData.length > 0) {
     histogramSvg.innerHTML = "";
     probabilitiesData.forEach((item, index) => {
       const p = parseFloat(item.probability);
       const maxH = 50;
       const barHeight = maxProbability > 0 ? (p / maxProbability) * maxH : 0;
+      const isPeak = p === peakProbability;
 
       const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
@@ -176,9 +196,12 @@ function updateDashboardUI() {
       rect.setAttribute("y", 80 - barHeight);
       rect.setAttribute("width", rectWidth);
       rect.setAttribute("height", Math.max(1, barHeight));
-      rect.setAttribute("fill", "#E8882E");
+      rect.setAttribute("fill", isPeak ? "#FFB347" : "#E8882E");
       rect.setAttribute("rx", 2);
       rect.style.transition = "height 0.8s, y 0.8s";
+      if (isPeak) {
+        rect.setAttribute("filter", "url(#peakGlow)");
+      }
 
       const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
       const hourStr = item["start time"].split(":")[0].padStart(2, "0");
@@ -189,9 +212,9 @@ function updateDashboardUI() {
       const textY = 80 - barHeight - 2;
       text.setAttribute("x", textX);
       text.setAttribute("y", textY);
-      text.setAttribute("fill", "#a69182");
+      text.setAttribute("fill", isPeak ? "#FFB347" : "#a69182");
       text.setAttribute("font-size", "7.5px");
-      text.setAttribute("font-weight", "500");
+      text.setAttribute("font-weight", isPeak ? "700" : "500");
       text.setAttribute("text-anchor", "start");
       text.setAttribute("alignment-baseline", "middle");
       text.setAttribute("transform", `rotate(-90, ${textX}, ${textY})`);
@@ -201,6 +224,11 @@ function updateDashboardUI() {
       histogramSvg.appendChild(g);
     });
   }
+
+  // Remove shimmer from cards populated by the initial dashboard API
+  document.querySelectorAll('.card-data:not(#WeekendSplitData):not(#PeakSeasonData):not(#JitterStreakData):not(#AvgCupsData), .card-hint').forEach(el => {
+    el.classList.remove('loading-shimmer');
+  });
 
   // Volume
   const liters = (dashboardData.totalCups * 0.25).toFixed(1);
@@ -228,13 +256,14 @@ function processFullDB() {
 
   const seasonCount = { Winter: 0, Spring: 0, Summer: 0, Fall: 0 };
   const datesSet = new Set();
+  const yearCounts = {};
 
   coffeeDbData.forEach(row => {
     // Weekend Split (Friday & Saturday)
     if (row.Weekday === 'Friday' || row.Weekday === 'Saturday') weekends++;
     else weekdays++;
 
-    // Season
+    // Season & Year
     if (row.Day) {
       const month = parseInt(row.Day.split('-')[1], 10);
       if (month === 12 || month <= 2) seasonCount.Winter++;
@@ -242,7 +271,15 @@ function processFullDB() {
       else if (month >= 6 && month <= 8) seasonCount.Summer++;
       else seasonCount.Fall++;
 
-      datesSet.add(row.Day.split(' ')[0]);
+      const year = row.Day.split('-')[2].substring(0, 4);
+      yearCounts[year] = (yearCounts[year] || 0) + 1;
+
+      const dateStr = row.Day.split(' ')[0]; // DD-MM-YYYY
+      const dParts = dateStr.split('-');
+      const yyyymmdd = `${dParts[2]}-${dParts[1]}-${dParts[0]}`;
+      coffeeHeatmapData[yyyymmdd] = (coffeeHeatmapData[yyyymmdd] || 0) + 1;
+
+      datesSet.add(dateStr);
     }
   });
 
@@ -251,7 +288,11 @@ function processFullDB() {
   if (total > 0) {
     const wkdPct = Math.round((weekdays / total) * 100);
     const wendPct = Math.round((weekends / total) * 100);
-    document.getElementById("WeekendSplitData").textContent = `${wkdPct}% / ${wendPct}%`;
+    const splitEl = document.getElementById("WeekendSplitData");
+    if (splitEl) {
+      splitEl.textContent = `${wkdPct}% / ${wendPct}%`;
+      splitEl.classList.remove('loading-shimmer');
+    }
   }
 
   // Peak Season
@@ -263,8 +304,56 @@ function processFullDB() {
       peakSeason = season;
     }
   }
-  document.getElementById("PeakSeasonData").textContent = peakSeason;
-  document.getElementById("PeakSeasonData").nextElementSibling.innerHTML = `Winter: ${seasonCount.Winter} &nbsp; Spring: ${seasonCount.Spring}<br>Summer: ${seasonCount.Summer} &nbsp; Fall: ${seasonCount.Fall}`;
+  const peakEl = document.getElementById("PeakSeasonData");
+  if (peakEl) {
+    peakEl.textContent = peakSeason;
+    peakEl.nextElementSibling.innerHTML = `Winter: ${seasonCount.Winter} &nbsp; Spring: ${seasonCount.Spring}<br>Summer: ${seasonCount.Summer} &nbsp; Fall: ${seasonCount.Fall}`;
+    peakEl.classList.remove('loading-shimmer');
+  }
+
+  // Yearly Breakup
+  const breakupEl = document.getElementById("YearlyBreakupData");
+  if (breakupEl) {
+    breakupEl.innerHTML = "";
+    const maxYearCups = Math.max(...Object.values(yearCounts));
+    const sortedYears = Object.keys(yearCounts).sort((a, b) => b - a);
+
+    sortedYears.forEach(year => {
+      const count = yearCounts[year];
+      const pct = (count / maxYearCups) * 100;
+      breakupEl.innerHTML += `
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+          <div style="width: 45px; font-weight: 600;">${year}</div>
+          <div style="flex-grow: 1; background: var(--card-border); height: 8px; border-radius: 4px; overflow: hidden;">
+            <div style="width: ${pct}%; background: var(--accent); height: 100%; border-radius: 4px; transition: width 1s ease-out;"></div>
+          </div>
+          <div style="width: 40px; text-align: right; color: var(--text-muted); font-size: 0.9em;">${count}</div>
+        </div>
+      `;
+    });
+  }
+
+  // Populate Heatmap Years
+  const yearSelect = document.getElementById("HeatmapYearSelect");
+  if (yearSelect) {
+    yearSelect.innerHTML = "";
+    const years = Object.keys(yearCounts).sort((a, b) => b - a);
+    years.forEach(y => {
+      const opt = document.createElement("option");
+      opt.value = y;
+      opt.textContent = y;
+      yearSelect.appendChild(opt);
+    });
+    yearSelect.value = years.includes("2025") ? "2025" : years[0];
+
+    // Ensure we only add the listener once
+    const newSelect = yearSelect.cloneNode(true);
+    yearSelect.parentNode.replaceChild(newSelect, yearSelect);
+    newSelect.addEventListener("change", (e) => {
+      renderHeatmap(e.target.value);
+    });
+    renderHeatmap(newSelect.value);
+  }
 
   // Streak Calculation
   const sortedDates = Array.from(datesSet).map(d => {
@@ -287,18 +376,72 @@ function processFullDB() {
   }
   if (currStreak > maxStreak) maxStreak = currStreak;
 
-  document.getElementById("JitterStreakData").textContent = `${maxStreak} Days`;
+  const streakEl = document.getElementById("JitterStreakData");
+  if (streakEl) {
+    streakEl.textContent = `${maxStreak} Days`;
+    streakEl.classList.remove('loading-shimmer');
+  }
+
+  // Avg cups per day — calculated from actual unique days in the full DB
+  const uniqueDayCount = datesSet.size;
+  if (uniqueDayCount > 0) {
+    const avgPerDay = (coffeeDbData.length / uniqueDayCount).toFixed(1);
+    const avgCupsEl = document.getElementById("AvgCupsData");
+    if (avgCupsEl) {
+      avgCupsEl.textContent = `${avgPerDay} Cups`;
+      avgCupsEl.classList.remove('loading-shimmer'); // Remove shimmer if it was added
+    }
+  }
+}
+
+function renderHeatmap(yearStr) {
+  const container = document.getElementById('HeatmapContainer');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const year = parseInt(yearStr, 10);
+  const startDate = new Date(year, 0, 1);
+  const endDate = new Date(year, 11, 31);
+
+  const startDayOfWeek = startDate.getDay(); // 0 is Sunday
+  for (let i = 0; i < startDayOfWeek; i++) {
+    const emptySquare = document.createElement('div');
+    emptySquare.className = 'heatmap-square';
+    emptySquare.style.opacity = '0';
+    container.appendChild(emptySquare);
+  }
+
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const yStr = d.getFullYear();
+    const mStr = pad(d.getMonth() + 1);
+    const dayStr = pad(d.getDate());
+    const ymd = `${yStr}-${mStr}-${dayStr}`;
+
+    const count = coffeeHeatmapData[ymd] || 0;
+    let level = 0;
+    if (count === 1) level = 1;
+    else if (count >= 2 && count <= 3) level = 2;
+    else if (count >= 4 && count <= 5) level = 3;
+    else if (count > 5) level = 4;
+
+    const square = document.createElement('div');
+    square.className = `heatmap-square level-${level}`;
+    square.title = `${ymd}: ${count} cups`;
+    container.appendChild(square);
+  }
 }
 
 async function init() {
   try {
-    const [dashRes, probRes] = await Promise.all([
+    const [dashRes, probRes, weekdaysRes] = await Promise.all([
       fetch(`https://opensheet.elk.sh/${spreadsheetId}/${dashboardTabName}`),
-      fetch(`https://opensheet.elk.sh/${spreadsheetId}/${probabilityTabName}`)
+      fetch(`https://opensheet.elk.sh/${spreadsheetId}/${probabilityTabName}`),
+      fetch(`https://opensheet.elk.sh/${spreadsheetId}/${weekdaysDistributionTabName}`)
     ]);
 
     const dashData = await dashRes.json();
     probabilitiesData = await probRes.json();
+    weekdaysDistributionData = await weekdaysRes.json();
 
     dashboardData = {
       totalCups: dashData[0]["total cups"],
@@ -342,4 +485,21 @@ async function init() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+  // Apply shimmer to all stat cards while data loads
+  document.querySelectorAll('.card-data, .card-hint').forEach(el => {
+    el.classList.add('loading-shimmer');
+  });
+
+  const themeSelect = document.getElementById('ThemeSelect');
+  if (themeSelect) {
+    themeSelect.value = savedTheme;
+    themeSelect.addEventListener('change', (e) => {
+      const theme = e.target.value;
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('coffee-theme', theme);
+    });
+  }
+
+  init();
+});
