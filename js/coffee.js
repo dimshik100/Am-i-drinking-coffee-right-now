@@ -151,6 +151,65 @@ function updateDashboardUI() {
   document.getElementById("MostCaffeinatedDayData").textContent = maxWDay;
   document.getElementById("MostCaffeinatedDayHint").textContent = `${maxWDayCups} total cups recorded`;
 
+  // Weekday Histogram
+  const weekdayOrder = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const weekdaySvg = document.getElementById("WeekdayHistogram");
+  if (weekdaySvg && weekdaysDistributionData.length > 0) {
+    weekdaySvg.innerHTML = "";
+    const sorted = weekdayOrder.map(day => {
+      const found = weekdaysDistributionData.find(d => d.Weekday === day);
+      return { day, cups: found ? parseInt(found["1"], 10) : 0 };
+    });
+    const maxCups = Math.max(...sorted.map(d => d.cups));
+    const totalWidth = 240;
+    const slotWidth = totalWidth / sorted.length;
+
+    sorted.forEach(({ day, cups }, index) => {
+      const isPeak = cups === maxCups;
+      const maxH = 50;
+      const barHeight = maxCups > 0 ? (cups / maxCups) * maxH : 0;
+      const rectWidth = slotWidth * 0.95;
+      const rectX = index * slotWidth + (slotWidth - rectWidth) / 2;
+
+      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+      const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      rect.setAttribute("x", rectX);
+      rect.setAttribute("y", 80 - barHeight);
+      rect.setAttribute("width", rectWidth);
+      rect.setAttribute("height", Math.max(1, barHeight));
+      rect.setAttribute("fill", isPeak ? "#FFB347" : "#E8882E");
+      rect.setAttribute("rx", 2);
+      rect.style.transition = "height 0.8s, y 0.8s";
+
+      const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      label.textContent = day.slice(0, 3).toUpperCase();
+      const textX = rectX + rectWidth / 2;
+      label.setAttribute("x", textX);
+      label.setAttribute("y", 80 - barHeight - 4);
+      label.setAttribute("fill", isPeak ? "#FFB347" : "#a69182");
+      label.setAttribute("font-size", "8px");
+      label.setAttribute("font-weight", isPeak ? "700" : "500");
+      label.setAttribute("text-anchor", "middle");
+      label.setAttribute("alignment-baseline", "bottom");
+
+      const countLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      countLabel.textContent = cups;
+      countLabel.setAttribute("x", textX);
+      countLabel.setAttribute("y", 77);
+      countLabel.setAttribute("fill", "#140c08");
+      countLabel.setAttribute("font-size", "10px");
+      countLabel.setAttribute("font-weight", "700");
+      countLabel.setAttribute("text-anchor", "middle");
+      countLabel.setAttribute("alignment-baseline", "bottom");
+
+      g.appendChild(rect);
+      g.appendChild(label);
+      g.appendChild(countLabel);
+      weekdaySvg.appendChild(g);
+    });
+  }
+
   let goldenHourStr = "0:00:00";
   let maxP = 0;
   probabilitiesData.forEach((item) => {
