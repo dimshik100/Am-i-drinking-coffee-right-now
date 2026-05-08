@@ -2,7 +2,7 @@
 
 This is a fun project to track and visualize my coffee intake data over the years!
 
-The data is currently based on over **3,000** cups of coffee I've drank starting back in 2015.
+The data is currently based on **4,000** cups of coffee I've drank starting back in 2015.
 
 I'm a massive fan of data. I originally used a Samsung watch to track my consumption, but I now log every cup using a quick 3-tap shortcut on my phone directly into a Google Spreadsheet. The data is instantly processed and fed live to this dashboard.
 

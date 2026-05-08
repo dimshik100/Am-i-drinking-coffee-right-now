@@ -112,6 +112,32 @@ body {
   100% { transform: translateY(0) scale(1); opacity: 0.5; }
 }
 
+@keyframes wave-slide-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-220px); }
+}
+
+@keyframes wave-slide-right {
+  0% { transform: translateX(-220px); }
+  100% { transform: translateX(0); }
+}
+
+.wave-top {
+  animation: wave-slide-left 8s infinite linear;
+}
+
+.wave-mid {
+  animation: wave-slide-right 12s infinite linear;
+}
+
+.wave-bottom {
+  animation: wave-slide-left 15s infinite linear;
+}
+
+#liquid-stack {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 
 
 .steam {

@@ -88,15 +88,17 @@ function updateProbabilityDisplay(timeStr) {
   // Update Contextual Message
   document.getElementById("ContextualMessage").textContent = getContextualMessage(hours, normalized);
   
-  // Animate Liquid Level (via height and y)
-  const liquidCoffee = document.querySelector(".liquid-coffee");
-  if (liquidCoffee) {
+  // Animate Liquid Level (via group transform)
+  const liquidStack = document.getElementById("liquid-stack");
+  if (liquidStack) {
     const maxH = 180.305;
     const bottomY = 315.779;
-    const newH = (normalized / 100) * maxH;
-    const newY = bottomY - newH;
-    liquidCoffee.setAttribute('height', newH);
-    liquidCoffee.setAttribute('y', newY);
+    
+    // Enforce a minimum visual height of 40% so the waves never hide entirely
+    const visualPercent = Math.max(40, normalized);
+    const newY = bottomY - (visualPercent / 100) * maxH;
+    
+    liquidStack.style.transform = `translate(147px, ${newY}px)`;
   }
 }
 
