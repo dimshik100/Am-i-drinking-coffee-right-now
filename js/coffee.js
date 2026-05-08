@@ -39,7 +39,7 @@ function formatDuration(seconds) {
   const hours = Math.floor((seconds % (3600 * 24)) / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = Math.floor(seconds % 60);
-  
+
   if (days > 0) return `${days}d ${hours}h ${minutes}m ${secs}s`;
   if (hours > 0) return `${hours}h ${minutes}m ${secs}s`;
   if (minutes > 0) return `${minutes}m ${secs}s`;
@@ -50,10 +50,10 @@ function parseDateDDMMYYYYHHMMSS(dateStr) {
   if (!dateStr) return new Date();
   const parts = dateStr.split(' ');
   const dateParts = parts[0].split('-');
-  const timeParts = parts[1] ? parts[1].split(':') : ['00','00','00'];
+  const timeParts = parts[1] ? parts[1].split(':') : ['00', '00', '00'];
   return new Date(
-    parseInt(dateParts[2]), 
-    parseInt(dateParts[1]) - 1, 
+    parseInt(dateParts[2]),
+    parseInt(dateParts[1]) - 1,
     parseInt(dateParts[0]),
     parseInt(timeParts[0]),
     parseInt(timeParts[1]),
@@ -77,27 +77,27 @@ function getContextualMessage(hours, prob) {
 function updateProbabilityDisplay(timeStr) {
   const hours = parseInt(timeStr.split(":")[0], 10);
   if (!probabilitiesData[hours]) return;
-  
+
   const prob = probabilitiesData[hours].probability;
   const normalized = normalizeProbability(prob);
   const wepText = getWEP(normalized);
-  
+
   document.querySelector(".probability").textContent = normalized.toFixed(2);
   document.querySelector(".wep").textContent = wepText;
-  
+
   // Update Contextual Message
   document.getElementById("ContextualMessage").textContent = getContextualMessage(hours, normalized);
-  
+
   // Animate Liquid Level (via group transform)
   const liquidStack = document.getElementById("liquid-stack");
   if (liquidStack) {
     const maxH = 180.305;
     const bottomY = 315.779;
-    
+
     // Enforce a minimum visual height of 40% so the waves never hide entirely
     const visualPercent = Math.max(40, normalized);
     const newY = bottomY - (visualPercent / 100) * maxH;
-    
+
     liquidStack.style.transform = `translate(147px, ${newY}px)`;
   }
 }
@@ -109,26 +109,26 @@ function updateLiveClock() {
 
 function updateDashboardUI() {
   document.querySelector(".total").textContent = dashboardData.totalCups;
-  
+
   const firstDate = parseDateDDMMYYYYHHMMSS(dashboardData.firstRecordedCoffeeCup);
   latestDateObj = parseDateDDMMYYYYHHMMSS(dashboardData.latestRecordedCoffeeCup);
-  
+
   const yearsTotal = ((latestDateObj - firstDate) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1);
   document.querySelector(".total-years").textContent = `${yearsTotal} years`;
-  
+
   document.getElementById("TotalCupsData").textContent = dashboardData.totalCups;
   document.getElementById("CaffeineHint").textContent = `~${Math.round(dashboardData.totalCups * 0.08)}g of caffeine`;
-  
-  document.getElementById("FirstCupData").textContent = firstDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) + " " + firstDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-  document.getElementById("LatestCupData").textContent = latestDateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) + " " + latestDateObj.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-  
+
+  document.getElementById("FirstCupData").textContent = firstDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) + " " + firstDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  document.getElementById("LatestCupData").textContent = latestDateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) + " " + latestDateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
   if (liveTimerInterval) clearInterval(liveTimerInterval);
   updateLiveClock();
   liveTimerInterval = setInterval(updateLiveClock, 1000);
-  
+
   document.getElementById("LongestGapData").textContent = formatDuration(dashboardData.longestTimeBetweenTwoCupsInSeconds);
   document.getElementById("ShortestGapData").textContent = formatDuration(dashboardData.shortestTimeBetweenTwoCupsInSeconds);
-  
+
   document.getElementById("MaxCupsData").textContent = `${dashboardData.maximalNumberOfCupsInOneDay} Cups`;
   const maxCupsDate = parseDateDDMMYYYYHHMMSS(dashboardData.latestMostFrequentDay);
   document.getElementById("MaxCupsHint").textContent = `On ${maxCupsDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}`;
@@ -137,7 +137,7 @@ function updateDashboardUI() {
   let maxP = 0;
   probabilitiesData.forEach((item) => {
     const p = parseFloat(item.probability);
-    if(p > maxP) {
+    if (p > maxP) {
       maxP = p;
       goldenHourStr = item["start time"];
     }
@@ -147,10 +147,10 @@ function updateDashboardUI() {
   goldenTime.setHours(goldenHour, 0, 0);
   const goldenEndTime = new Date();
   goldenEndTime.setHours(goldenHour + 1, 0, 0);
-  
-  const startStr = goldenTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-  const endStr = goldenEndTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-  
+
+  const startStr = goldenTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const endStr = goldenEndTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
   const goldenEl = document.getElementById("GoldenHourData");
   goldenEl.textContent = `${startStr} - ${endStr}`;
   goldenEl.style.fontSize = "1.2rem";
@@ -163,7 +163,7 @@ function updateDashboardUI() {
       const p = parseFloat(item.probability);
       const maxH = 50;
       const barHeight = maxProbability > 0 ? (p / maxProbability) * maxH : 0;
-      
+
       const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
       const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -174,12 +174,12 @@ function updateDashboardUI() {
       rect.setAttribute("fill", "#E8882E");
       rect.setAttribute("rx", 2);
       rect.style.transition = "height 0.8s, y 0.8s";
-      
+
       const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
       const hourStr = item["start time"].split(":")[0].padStart(2, "0");
       const nextHourStr = ((parseInt(hourStr) + 1) % 24).toString().padStart(2, "0");
       text.textContent = `${hourStr}-${nextHourStr}`;
-      
+
       const textX = index * 10 + 4;
       const textY = 80 - barHeight - 2;
       text.setAttribute("x", textX);
@@ -190,7 +190,7 @@ function updateDashboardUI() {
       text.setAttribute("text-anchor", "start");
       text.setAttribute("alignment-baseline", "middle");
       text.setAttribute("transform", `rotate(-90, ${textX}, ${textY})`);
-      
+
       g.appendChild(rect);
       g.appendChild(text);
       histogramSvg.appendChild(g);
@@ -210,25 +210,25 @@ async function fetchCoffeeDB() {
     const res = await fetch(`https://opensheet.elk.sh/${spreadsheetId}/${coffeeDbTabName}`);
     coffeeDbData = await res.json();
     processFullDB();
-  } catch(e) {
+  } catch (e) {
     console.error("Error fetching full DB", e);
   }
 }
 
 function processFullDB() {
   if (!coffeeDbData || coffeeDbData.length === 0) return;
-  
+
   let weekends = 0;
   let weekdays = 0;
-  
+
   const seasonCount = { Winter: 0, Spring: 0, Summer: 0, Fall: 0 };
   const datesSet = new Set();
-  
+
   coffeeDbData.forEach(row => {
-    // Weekend Split
-    if (row.Weekday === 'Saturday' || row.Weekday === 'Sunday') weekends++;
+    // Weekend Split (Friday & Saturday)
+    if (row.Weekday === 'Friday' || row.Weekday === 'Saturday') weekends++;
     else weekdays++;
-    
+
     // Season
     if (row.Day) {
       const month = parseInt(row.Day.split('-')[1], 10);
@@ -236,19 +236,19 @@ function processFullDB() {
       else if (month >= 3 && month <= 5) seasonCount.Spring++;
       else if (month >= 6 && month <= 8) seasonCount.Summer++;
       else seasonCount.Fall++;
-      
+
       datesSet.add(row.Day.split(' ')[0]);
     }
   });
 
   // Update Split
   const total = weekends + weekdays;
-  if(total > 0) {
+  if (total > 0) {
     const wkdPct = Math.round((weekdays / total) * 100);
     const wendPct = Math.round((weekends / total) * 100);
     document.getElementById("WeekendSplitData").textContent = `${wkdPct}% / ${wendPct}%`;
   }
-  
+
   // Peak Season
   let peakSeason = 'Winter';
   let maxSeasonVal = seasonCount.Winter;
@@ -260,28 +260,28 @@ function processFullDB() {
   }
   document.getElementById("PeakSeasonData").textContent = peakSeason;
   document.getElementById("PeakSeasonData").nextElementSibling.textContent = `W:${seasonCount.Winter} Sp:${seasonCount.Spring} Su:${seasonCount.Summer} F:${seasonCount.Fall}`;
-  
+
   // Streak Calculation
   const sortedDates = Array.from(datesSet).map(d => {
     const p = d.split('-');
-    return new Date(parseInt(p[2]), parseInt(p[1])-1, parseInt(p[0])).getTime();
-  }).sort((a,b) => a-b);
-  
+    return new Date(parseInt(p[2]), parseInt(p[1]) - 1, parseInt(p[0])).getTime();
+  }).sort((a, b) => a - b);
+
   let maxStreak = 0;
   let currStreak = 1;
   const dayMs = 24 * 60 * 60 * 1000;
-  
-  for(let i=1; i<sortedDates.length; i++) {
-    const diff = Math.round((sortedDates[i] - sortedDates[i-1])/dayMs);
-    if(diff === 1) {
+
+  for (let i = 1; i < sortedDates.length; i++) {
+    const diff = Math.round((sortedDates[i] - sortedDates[i - 1]) / dayMs);
+    if (diff === 1) {
       currStreak++;
     } else {
-      if(currStreak > maxStreak) maxStreak = currStreak;
+      if (currStreak > maxStreak) maxStreak = currStreak;
       currStreak = 1;
     }
   }
-  if(currStreak > maxStreak) maxStreak = currStreak;
-  
+  if (currStreak > maxStreak) maxStreak = currStreak;
+
   document.getElementById("JitterStreakData").textContent = `${maxStreak} Days`;
 }
 
@@ -291,10 +291,10 @@ async function init() {
       fetch(`https://opensheet.elk.sh/${spreadsheetId}/${dashboardTabName}`),
       fetch(`https://opensheet.elk.sh/${spreadsheetId}/${probabilityTabName}`)
     ]);
-    
+
     const dashData = await dashRes.json();
     probabilitiesData = await probRes.json();
-    
+
     dashboardData = {
       totalCups: dashData[0]["total cups"],
       firstRecordedCoffeeCup: dashData[0]["first recorded coffee cup date"],
@@ -304,25 +304,25 @@ async function init() {
       shortestTimeBetweenTwoCupsInSeconds: parseInt(dashData[0]["shortest time between two cups in seconds"], 10),
       longestTimeBetweenTwoCupsInSeconds: parseInt(dashData[0]["longest time between two cups in seconds"], 10),
     };
-    
+
     maxProbability = Math.max(...probabilitiesData.map(o => o.probability));
-    
+
     updateDashboardUI();
-    
+
     const timePicker = document.getElementById('timePicker');
     const now = new Date();
     const currentTimeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
     timePicker.value = currentTimeStr;
-    
+
     updateProbabilityDisplay(currentTimeStr);
     timePicker.addEventListener('change', (e) => {
       updateProbabilityDisplay(e.target.value);
     });
-    
+
     // Navigation active state logic
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
-      item.addEventListener('click', function() {
+      item.addEventListener('click', function () {
         navItems.forEach(n => n.classList.remove('active'));
         this.classList.add('active');
       });
@@ -330,8 +330,8 @@ async function init() {
 
     // Async load the full DB so UI doesn't block
     setTimeout(fetchCoffeeDB, 500);
-    
-  } catch(e) {
+
+  } catch (e) {
     console.error("Error fetching data:", e);
     document.querySelector(".wep").textContent = "Error loading data";
   }
